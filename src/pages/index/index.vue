@@ -9,7 +9,10 @@ defineOptions({
   name: 'Home',
 })
 
-uni.showShareMenu()
+// 小程序显示 分享
+if (PLATFORM.isMp) {
+  uni.showShareMenu()
+}
 
 const current = ref(0)
 const swiperList = ref([])
