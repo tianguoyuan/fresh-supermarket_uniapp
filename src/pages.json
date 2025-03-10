@@ -2,7 +2,7 @@
   "globalStyle": {
     "navigationStyle": "default",
     "navigationBarTitleText": "生鲜超市uniapp",
-    "navigationBarBackgroundColor": "#f8f8f8",
+    "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#FFFFFF"
   },

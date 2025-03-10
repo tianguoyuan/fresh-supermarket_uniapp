@@ -21,5 +21,9 @@ onHide(() => {
 .uni-tabbar-bottom {
   display: none;
 }
+/* stylelint-disable-next-line selector-type-no-unknown */
+uni-page-wrapper::after {
+  display: none !important;
+}
 // #endif
 </style>

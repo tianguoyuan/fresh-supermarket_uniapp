@@ -10,7 +10,8 @@ export default defineUniPages({
   globalStyle: {
     navigationStyle: 'default',
     navigationBarTitleText: VITE_APP_TITLE,
-    navigationBarBackgroundColor: '#f8f8f8',
+    // navigationBarBackgroundColor: '#f8f8f8',
+    navigationBarBackgroundColor: '#FFFFFF',
     navigationBarTextStyle: 'black',
     backgroundColor: '#FFFFFF',
   },

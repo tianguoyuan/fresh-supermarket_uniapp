@@ -1,21 +1,72 @@
 <!-- 使用 type="home" 属性设置首页，其他页面不需要设置，默认为page；推荐使用json5，更强大，且允许注释 -->
+
 <script lang="ts" setup>
 import Tabbar from '@/components/Tabbar.vue'
+import { getKindList, type kindListRes } from '@/service/kind'
 
 defineOptions({
   name: 'Kind',
 })
+
+onLoad(() => {
+  init()
+})
+
+// 侧边栏
+const categories = ref<string[]>([])
+// 瀑布流列表
+const listData = ref([])
+async function init() {
+  getKindList().then(({ data: { module } }) => {
+    console.log('data', module)
+    categories.value = module.map((v) => v.moduleTitle)
+  })
+}
+
+const active = ref(0)
+function changeActive(i: number) {
+  active.value = i
+}
 </script>
 <template>
-  <view class="p-3">
-    <wd-navbar title="kind" fixed placeholder safe-area-inset-top></wd-navbar>
+  <view id="container" class="flex flex-col">
+    <view>
+      <wd-navbar title="分类" fixed placeholder safe-area-inset-top>
+        <!-- #ifdef MP-WEIXIN -->
+        <template #left>
+          <wd-icon name="share"></wd-icon>
+        </template>
+        <!-- #endif -->
+        <!-- #ifndef MP-WEIXIN -->
+        <template #right>
+          <wd-icon name="share"></wd-icon>
+        </template>
+        <!-- #endif -->
+      </wd-navbar>
+    </view>
 
-    kind
-    <Tabbar tabbar-path="/pages/kind/kind" />
+    <view class="flex-1 flex overflow-hidden">
+      <view class="flex flex-col w-80px overflow-auto">
+        <view>
+          <view
+            v-for="(item, index) in categories"
+            :key="item"
+            class="p-3 py-5 text-3 line-height-3"
+            @click="changeActive(index)"
+          >
+            <view class="line-clamp-1">{{ item }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="flex-1 bg-gray"></view>
+    </view>
+    <!-- 小程序tabbar不占据位置bug -->
+    <!-- #ifdef MP-WEIXIN -->
+    <view class="pb-safe-tabbar"></view>
+    <!-- #endif -->
+    <Tabbar tabbar-path="/pages/kind/kind" :is-placeholder="false" />
   </view>
 </template>
-
-<style lang="scss" scoped></style>
 
 <route lang="json5">
 {

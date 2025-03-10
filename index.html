@@ -3,6 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
+
+    <!-- 指定启动屏幕图像 -->
+    <link rel="apple-touch-startup-image" href="favicon.svg" />
+    <!-- 添加启动图标标题 -->
+    <meta name="apple-mobile-web-app-title" content="AppTitle" />
+    <!-- 更改状态栏的外观 -->
+    <!-- <meta name="apple-mobile-web-app-status-bar-style" content="light" /> -->
+    <!-- 隐藏Safari用户界面组件 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <script>
       var coverSupport =
         'CSS' in window &&
@@ -19,8 +28,8 @@
     <!--app-context-->
   </head>
 
-  <body>
-    <div id="app"><!--app-html--></div>
+  <body class="font-sans">
+    <div id="app">loading...</div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

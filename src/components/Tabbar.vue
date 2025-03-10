@@ -8,9 +8,18 @@ const tabbarList = [
   { title: '我的', icon: 'user', path: '/pages/user/user' },
 ] as const
 type PathType = (typeof tabbarList)[number]['path']
-const props = defineProps<{
-  tabbarPath: PathType
-}>()
+
+const props = withDefaults(
+  defineProps<{
+    tabbarPath: PathType
+    isPlaceholder?: boolean
+    isFixed?: boolean
+  }>(),
+  {
+    isFixed: true,
+    isPlaceholder: true,
+  },
+)
 
 const tabbarIndex = tabbarList.findIndex((v) => v.path === props.tabbarPath)
 
@@ -24,10 +33,10 @@ function pageTo(index: number) {
 <template>
   <wd-tabbar
     :model-value="tabbarIndex"
-    fixed
+    :fixed="isFixed"
     bordered
     safe-area-inset-bottom
-    placeholder
+    :placeholder="isPlaceholder"
     :active-color="ColorEnum.MAIN_COLOR"
     @update:model-value="pageTo"
   >
