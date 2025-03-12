@@ -3,6 +3,7 @@
 <script lang="ts" setup>
 import Tabbar from '@/components/Tabbar.vue'
 import { getKindList, type kindListRes } from '@/service/kind'
+import Sidebar from '@/components/Sidebar.vue'
 
 defineOptions({
   name: 'Kind',
@@ -15,17 +16,30 @@ onLoad(() => {
 // 侧边栏
 const categories = ref<string[]>([])
 // 瀑布流列表
-const listData = ref([])
+const listData = ref<kindListRes['module']>([])
 async function init() {
   getKindList().then(({ data: { module } }) => {
     console.log('data', module)
     categories.value = module.map((v) => v.moduleTitle)
+    listData.value = module
   })
 }
 
 const active = ref(0)
 function changeActive(i: number) {
   active.value = i
+}
+// 瀑布流
+const column = ref(3)
+const columnChange = ref(false)
+function changeColumn(h) {
+  column.value = !h ? column.value - 1 : column.value + 1
+  if (column.value > 5) return (column.value = 5)
+  if (column.value < 2) return (column.value = 2)
+  columnChange.value = true
+  setTimeout(() => {
+    columnChange.value = false
+  })
 }
 </script>
 <template>
@@ -46,7 +60,11 @@ function changeActive(i: number) {
     </view>
 
     <view class="flex-1 flex overflow-hidden">
-      <view class="flex flex-col w-80px overflow-auto">
+      <view class="overflow-auto w-full">
+        <Sidebar :list-data="listData" />
+      </view>
+
+      <!-- <view class="flex flex-col w-80px overflow-auto flex-shrink-0">
         <view>
           <view
             v-for="(item, index) in categories"
@@ -58,12 +76,12 @@ function changeActive(i: number) {
           </view>
         </view>
       </view>
-      <view class="flex-1 bg-gray"></view>
+      <view class="flex-1 overflow-auto">
+        
+      </view> -->
     </view>
     <!-- 小程序tabbar不占据位置bug -->
-    <!-- #ifdef MP-WEIXIN -->
     <view class="pb-safe-tabbar"></view>
-    <!-- #endif -->
     <Tabbar tabbar-path="/pages/kind/kind" :is-placeholder="false" />
   </view>
 </template>

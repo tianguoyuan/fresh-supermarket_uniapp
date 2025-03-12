@@ -14,6 +14,7 @@ interface NavigateToOptions {
        "/pages/user/user" |
        "/pages-sub/demo/demo" |
        "/pages-sub/demo/list" |
+       "/pages-sub/demo/sidebar" |
        "/pages-sub/webview/webview";
 }
 interface RedirectToOptions extends NavigateToOptions {}
