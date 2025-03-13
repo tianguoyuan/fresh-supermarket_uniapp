@@ -127,12 +127,3 @@ export default {
   }
 }
 </style>
-
-<route lang="json5" type="page">
-{
-  layout: 'default',
-  style: {
-    navigationBarTitleText: 'demo-sidebar',
-  },
-}
-</route>
