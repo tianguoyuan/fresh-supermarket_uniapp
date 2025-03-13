@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { getHomeBanner } from '@/service'
+import { getHomeBanner } from '@/service/home'
 const paging = ref(null)
 // v-model绑定的这个变量不要在分页请求结束中自己赋值，直接使用即可
 const dataList = ref([])
