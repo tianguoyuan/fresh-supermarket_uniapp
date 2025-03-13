@@ -10,7 +10,7 @@ const props = defineProps<{
     <view class="text-3 color-gray font-600">{{ item.moduleTitle }}</view>
     <view v-for="(cell, cellIndex) in item.list" :key="cellIndex" class="flex my-3">
       <view class="mr-3">
-        <wd-img class="w-110px h-110px" :src="cell.cover" lazy-load enable-preview />
+        <wd-img :width="110" :height="110" :src="cell.cover" lazy-load enable-preview />
       </view>
       <view class="flex flex-col justify-between flex-1">
         <view>

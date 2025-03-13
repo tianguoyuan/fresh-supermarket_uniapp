@@ -111,7 +111,9 @@ export default {
             <wd-img
               :src="item.cover"
               lazy-load
-              class="m-auto overflow-hidden rounded-full w-54px h-54px"
+              class="m-auto overflow-hidden rounded-full"
+              :width="54"
+              :height="54"
             />
           </view>
           <view class="pt-2 text-center text-3 color-[#666]">

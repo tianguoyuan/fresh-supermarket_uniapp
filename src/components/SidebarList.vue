@@ -41,7 +41,7 @@ function handleChange({ value }) {
 }
 function onScroll(e) {
   const { scrollTop: elTop } = e.detail
-  scrollTop.value = +elTop
+  // scrollTop.value = +elTop
   const threshold = 50 // 下一个标题与顶部的距离
   if (elTop < threshold) {
     active.value = 0
@@ -57,7 +57,6 @@ function toTop() {
   scrollTop.value = 0
 }
 </script>
-
 <script lang="ts">
 export default {
   options: {
@@ -91,15 +90,15 @@ export default {
   </view>
 </template>
 <style lang="scss">
-#SidebarComponent {
-  .sidebarItem {
-    font-size: 12px;
-    color: #40ae36;
-    white-space: nowrap;
-    &::before {
-      background-color: #40ae36;
-    }
+.sidebarItem {
+  font-size: 12px;
+  color: #40ae36;
+  white-space: nowrap;
+  &::before {
+    background-color: #40ae36;
   }
+}
+#SidebarComponent {
   .wd-badge {
     overflow: hidden;
     text-overflow: ellipsis;

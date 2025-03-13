@@ -42,6 +42,15 @@ function changeColumn(h) {
   })
 }
 </script>
+
+<script lang="ts">
+export default {
+  options: {
+    styleIsolation: 'shared', // 解除样式隔离
+  },
+}
+</script>
+
 <template>
   <view id="container" class="flex flex-col">
     <view>
