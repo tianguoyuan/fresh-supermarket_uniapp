@@ -113,6 +113,7 @@
     "pinia": "2.0.36",
     "pinia-plugin-persistedstate": "3.2.1",
     "qs": "6.5.3",
+    "throttle-debounce": "^5.0.2",
     "vue": "3.4.21",
     "wot-design-uni": "^1.4.0",
     "z-paging": "^2.8.4"

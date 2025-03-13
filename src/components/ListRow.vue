@@ -3,6 +3,12 @@ import { type kindListRes } from '@/service/kind'
 const props = defineProps<{
   listData: kindListRes['module']
 }>()
+
+const instance = getCurrentInstance()
+
+defineExpose({
+  instance,
+})
 </script>
 
 <template>
