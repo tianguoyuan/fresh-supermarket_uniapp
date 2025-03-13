@@ -58,14 +58,6 @@
       "needLogin": true
     },
     {
-      "path": "pages/index/search",
-      "type": "page",
-      "layout": "default",
-      "style": {
-        "navigationBarTitleText": "搜索"
-      }
-    },
-    {
       "path": "pages/kind/kind",
       "type": "page",
       "style": {
@@ -105,6 +97,22 @@
       "style": {
         "navigationStyle": "custom",
         "navigationBarTitleText": "首页"
+      }
+    },
+    {
+      "path": "pages/index/search/result",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "搜索结果"
+      }
+    },
+    {
+      "path": "pages/index/search/search",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "搜索"
       }
     }
   ],

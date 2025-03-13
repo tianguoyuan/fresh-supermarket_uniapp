@@ -1,8 +1,12 @@
 <!-- 使用 type="home" 属性设置首页，其他页面不需要设置，默认为page；推荐使用json5，更强大，且允许注释 -->
 <script lang="ts" setup>
 import Tabbar from '@/components/Tabbar.vue'
-import { getHomeBanner } from '@/service'
-import { searchDefaultMsg } from '@/service/home'
+import {
+  findHomeFoodKindBanner,
+  searchDefaultMsg,
+  getHomeBanner,
+  type HomeFoodKindBannerRes,
+} from '@/service/home'
 import PLATFORM from '@/utils/platform'
 
 defineOptions({
@@ -14,24 +18,40 @@ if (PLATFORM.isMp) {
   uni.showShareMenu()
 }
 
-const current = ref(0)
-const swiperList = ref([])
-
+// 搜索框
 const hotSearchMsg = ref('搜索')
+function toSearchPage() {
+  uni.navigateTo({ url: '/pages/index/search/search' })
+}
+
+// banner
+const current = ref(0)
+const swiperList = ref<{ id: string; value: string; type: 'image' }[]>([])
+
+// 食品分类
+const foodKindList = ref<HomeFoodKindBannerRes['foodKindBanner']>([])
+function foodKindItemClick(name: string) {
+  uni.navigateTo({
+    url: `/pages/index/search/result?searchMsg=${name}`,
+  })
+}
+
 onLoad(init)
 async function init() {
+  // 首页-搜索-默认关键词
   searchDefaultMsg().then(({ data }) => {
     hotSearchMsg.value = data.searchDefault || ''
   })
 
+  // 顶部banner
   getHomeBanner().then(({ data: { banner } }) => {
-    console.log('homeBannerList', banner)
     swiperList.value = (banner || []).map((v) => ({ id: v.id, value: v.cover, type: 'image' }))
   })
-}
 
-function toSearchPage() {
-  uni.navigateTo({ url: '/pages/index/search' })
+  // 食品分类
+  findHomeFoodKindBanner().then(({ data: { foodKindBanner } }) => {
+    foodKindList.value = foodKindBanner
+  })
 }
 </script>
 <script lang="ts">
@@ -62,10 +82,12 @@ export default {
     <!-- #endif -->
   </wd-navbar>
   <view class="p-3">
+    <!-- 搜索框 -->
     <view @click="toSearchPage">
       <wd-search disabled hide-cancel :placeholder="hotSearchMsg" placeholder-left />
     </view>
 
+    <!-- banner -->
     <view class="card-swiper mt-3">
       <wd-swiper
         v-model:current="current"
@@ -76,6 +98,31 @@ export default {
       ></wd-swiper>
     </view>
 
+    <!-- 食品分类 -->
+    <view class="overflow-x-scroll">
+      <view class="mt-5 flex">
+        <view
+          v-for="item in foodKindList"
+          :key="item.id"
+          class="w-20% flex shrink-0 flex-col overflow-hidden px-1"
+          @click="foodKindItemClick(item.name)"
+        >
+          <view class="flex justify-center">
+            <wd-img
+              :src="item.cover"
+              lazy-load
+              class="m-auto overflow-hidden rounded-full w-54px h-54px"
+            />
+          </view>
+          <view class="pt-2 text-center text-3 color-[#666]">
+            <view class="line-clamp-1">
+              {{ item.name }}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
     <Tabbar tabbar-path="/pages/index/index" />
   </view>
 </template>
@@ -83,9 +130,8 @@ export default {
 .card-swiper {
   --wot-swiper-radius: 0;
   --wot-swiper-item-padding: 0 24rpx;
-  --wot-swiper-nav-dot-color: #e7e7e7;
+  --wot-swiper-nav-dot-color: #ffffff;
   --wot-swiper-nav-dot-active-color: #4d80f0;
-  padding-bottom: 24px;
   :deep(.custom-indicator-class) {
     color: white;
   }

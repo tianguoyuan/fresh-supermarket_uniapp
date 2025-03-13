@@ -6,12 +6,13 @@
 interface NavigateToOptions {
   url: "/pages/dashboard" |
        "/pages/index/index" |
-       "/pages/index/search" |
        "/pages/kind/kind" |
        "/pages/shopping/shopping" |
        "/pages/user/login" |
        "/pages/user/register" |
        "/pages/user/user" |
+       "/pages/index/search/result" |
+       "/pages/index/search/search" |
        "/pages-sub/demo/demo" |
        "/pages-sub/demo/list" |
        "/pages-sub/demo/sidebar" |

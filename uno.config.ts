@@ -79,6 +79,8 @@ export default defineConfig({
     ['pb-safe-tabbar', { 'padding-bottom': 'calc(env(safe-area-inset-bottom) + 50px)' }],
     ['bg-main', { 'background-color': '#40ae36' }],
     ['color-main', { color: '#40ae36' }],
+    ['color-primary', { color: '#40ae36' }],
+    ['border-color-primary', { 'border-color': '#40ae36' }],
   ],
 })
 

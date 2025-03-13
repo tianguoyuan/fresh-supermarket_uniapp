@@ -3,7 +3,7 @@
 <script lang="ts" setup>
 import Tabbar from '@/components/Tabbar.vue'
 import { getKindList, type kindListRes } from '@/service/kind'
-import Sidebar from '@/components/Sidebar.vue'
+import SidebarList from '@/components/SidebarList.vue'
 
 defineOptions({
   name: 'Kind',
@@ -61,28 +61,14 @@ function changeColumn(h) {
 
     <view class="flex-1 flex overflow-hidden">
       <view class="overflow-auto w-full">
-        <Sidebar :list-data="listData" />
+        <SidebarList :list-data="listData" />
       </view>
-
-      <!-- <view class="flex flex-col w-80px overflow-auto flex-shrink-0">
-        <view>
-          <view
-            v-for="(item, index) in categories"
-            :key="item"
-            class="p-3 py-5 text-3 line-height-3"
-            @click="changeActive(index)"
-          >
-            <view class="line-clamp-1">{{ item }}</view>
-          </view>
-        </view>
-      </view>
-      <view class="flex-1 overflow-auto">
-        
-      </view> -->
     </view>
     <!-- 小程序tabbar不占据位置bug -->
-    <view class="pb-safe-tabbar"></view>
-    <Tabbar tabbar-path="/pages/kind/kind" :is-placeholder="false" />
+    <!-- #ifdef MP-WEIXIN -->
+    <!-- <view class="pb-safe-tabbar"></view> -->
+    <!-- #endif -->
+    <Tabbar tabbar-path="/pages/kind/kind" :is-placeholder="true" />
   </view>
 </template>
 

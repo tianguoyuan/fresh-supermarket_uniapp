@@ -28,16 +28,16 @@ page {
   font-size: 14px;
   line-height: 1.2;
   color: #0b1526;
-  /* 禁止双击放大 */
-  touch-action: manipulation;
-  // background-color: #f8f9fa;
-  background-color: #fff;
 
   // 修改按主题色
   // --wot-color-theme: #37c2bc;
 
   // 修改按钮背景色
   // --wot-button-primary-bg-color: green;
+  /* 禁止双击放大 */
+  touch-action: manipulation;
+  // background-color: #f8f9fa;
+  background-color: #fff;
 }
 
 #container {
