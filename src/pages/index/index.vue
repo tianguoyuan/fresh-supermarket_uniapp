@@ -83,8 +83,9 @@ export default {
   </wd-navbar>
   <view class="p-3">
     <!-- 搜索框 -->
-    <view @click="toSearchPage">
+    <view class="relative">
       <wd-search disabled hide-cancel :placeholder="hotSearchMsg" placeholder-left />
+      <view class="absolute left-0 right-0 top-0 bottom-0" @click="toSearchPage"></view>
     </view>
 
     <!-- banner -->
@@ -108,13 +109,9 @@ export default {
           @click="foodKindItemClick(item.name)"
         >
           <view class="flex justify-center">
-            <wd-img
-              :src="item.cover"
-              lazy-load
-              class="m-auto overflow-hidden rounded-full"
-              :width="54"
-              :height="54"
-            />
+            <view class="w-54px h-54px overflow-hidden rounded-full m-auto">
+              <wd-img :src="item.cover" lazy-load :width="54" :height="54" />
+            </view>
           </view>
           <view class="pt-2 text-center text-3 color-[#666]">
             <view class="line-clamp-1">
