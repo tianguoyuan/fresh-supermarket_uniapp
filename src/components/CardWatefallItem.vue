@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { FindCommonRecommendListRes } from '@/service/common'
 
-//
-
 const props = defineProps<{
   item: FindCommonRecommendListRes['list'][0]
+  hideAdd?: boolean
 }>()
 </script>
 
@@ -34,7 +33,12 @@ const props = defineProps<{
             <view class="text-4 color-#F55726">{{ item.price }}</view>
             <view class="ml-2px text-3 color-#999">/箱</view>
           </view>
-          <image src="../assets/icons/add-shopping.svg" mode="widthFix" class="w-5 mr-1" />
+          <image
+            v-if="props.hideAdd"
+            src="../assets/icons/add-shopping.svg"
+            mode="widthFix"
+            class="w-5 mr-1"
+          />
         </view>
       </view>
     </view>

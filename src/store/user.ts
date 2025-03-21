@@ -23,7 +23,31 @@ export const useUserStore = defineStore(
       userId.value = ''
     }
 
+    const userImg = ref('')
+    function changeUserImg(v) {
+      userImg.value = v
+    }
+
+    const userName = ref('')
+    function changeUserName(v) {
+      userName.value = v
+    }
+
+    const phone = ref('')
+    function changeUserPhone(v) {
+      phone.value = v
+    }
+
     return {
+      userImg,
+      changeUserImg,
+
+      userName,
+      changeUserName,
+
+      phone,
+      changeUserPhone,
+
       token,
       changeToken,
 

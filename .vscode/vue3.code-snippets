@@ -20,6 +20,9 @@
     "prefix": "v3",
     "body": [
       "<script lang=\"ts\" setup>",
+      "defineOptions({",
+      "  name: '',",
+      "})",
       "//$3",
       "</script>\n",
       "<template>",
@@ -41,28 +44,16 @@
   "Print unibest style": {
     "scope": "vue",
     "prefix": "st",
-    "body": [
-      "<style lang=\"scss\" scoped>",
-      "//",
-      "</style>\n"
-    ],
+    "body": ["<style lang=\"scss\" scoped>", "//", "</style>\n"],
   },
   "Print unibest script": {
     "scope": "vue",
     "prefix": "sc",
-    "body": [
-      "<script lang=\"ts\" setup>",
-      "//$3",
-      "</script>\n"
-    ],
+    "body": ["<script lang=\"ts\" setup>", "//$3", "</script>\n"],
   },
   "Print unibest template": {
     "scope": "vue",
     "prefix": "te",
-    "body": [
-      "<template>",
-      "  <view class=\"\">$1</view>",
-      "</template>\n"
-    ],
+    "body": ["<template>", "  <view class=\"\">$1</view>", "</template>\n"],
   },
 }

@@ -77,6 +77,7 @@ export default defineConfig({
     ['pt-safe', { 'padding-top': 'env(safe-area-inset-top)' }],
     ['pb-safe', { 'padding-bottom': 'env(safe-area-inset-bottom)' }],
     ['pb-safe-tabbar', { 'padding-bottom': 'calc(env(safe-area-inset-bottom) + 50px)' }],
+    ['pt-safe-navbar', { 'padding-top': 'calc(env(safe-area-inset-top) + 46px)' }],
     ['bg-main', { 'background-color': '#40ae36' }],
     ['color-main', { color: '#40ae36' }],
     ['color-primary', { color: '#40ae36' }],

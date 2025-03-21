@@ -66,6 +66,14 @@
       }
     },
     {
+      "path": "pages/shopping/address",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
       "path": "pages/shopping/shopping",
       "type": "page",
       "style": {
@@ -80,6 +88,14 @@
       "style": {
         "navigationBarTitleText": "登录",
         "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/user/myOrder",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": ""
       }
     },
     {

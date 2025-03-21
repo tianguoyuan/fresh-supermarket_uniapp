@@ -1,25 +1,140 @@
 <!-- 使用 type="home" 属性设置首页，其他页面不需要设置，默认为page；推荐使用json5，更强大，且允许注释 -->
 <script lang="ts" setup>
+import RecommendedForYou from '@/components/RecommendedForYou.vue'
 import Tabbar from '@/components/Tabbar.vue'
+import { useUserStore } from '@/store'
+import ListCard from './components/ListCard.vue'
+import IMGMyServer1 from '@/assets/icons/myServer1.svg'
+import IMGMyServer2 from '@/assets/icons/myServer2.svg'
+import IMGMyServer3 from '@/assets/icons/myServer3.svg'
+import IMGMyServer4 from '@/assets/icons/myServer4.svg'
+import IMGMyServer5 from '@/assets/icons/myServer5.svg'
+import IMGOrder1 from '@/assets/icons/order1.svg'
+import IMGOrder2 from '@/assets/icons/order2.svg'
+import IMGOrder3 from '@/assets/icons/order3.svg'
+import IMGOrder4 from '@/assets/icons/order4.svg'
+import IMGOrder5 from '@/assets/icons/order5.svg'
+import { phoneMask } from '@/utils/filter'
 
 defineOptions({
   name: 'User',
 })
 
-function toDemo() {
-  uni.navigateTo({ url: '/pages-sub/demo/demo' })
+const userStore = useUserStore()
+const userInfo = computed(() => userStore)
+
+// 订单功能
+const orderList = [
+  { iconClass: IMGOrder1, name: '待付款', active: true },
+  { iconClass: IMGOrder2, name: '待发货' },
+  { iconClass: IMGOrder3, name: '待收货' },
+  { iconClass: IMGOrder4, name: '待评价' },
+  { iconClass: IMGOrder5, name: '退款/售后' },
+]
+function onOrderListRightClick() {
+  uni.navigateTo({
+    url: '/pages/user/myOrder',
+  })
 }
+function onOrderListClick(i: number) {
+  uni.navigateTo({
+    url: `/pages/user/myOrder?activeIndex=${i}`,
+  })
+}
+
+// 我的服务
+const myServerList = [
+  {
+    iconClass: IMGMyServer1,
+    name: '收货地址',
+    func: () => {
+      uni.navigateTo({
+        url: `/pages/shopping/address`,
+      })
+    },
+  },
+  { iconClass: IMGMyServer2, name: '足迹' },
+  { iconClass: IMGMyServer3, name: '我的收藏' },
+  { iconClass: IMGMyServer4, name: '服务中心' },
+  {
+    iconClass: IMGMyServer5,
+    name: '在线客服',
+    // func: openQQHref,
+  },
+]
+function onServerListClick(i: number) {
+  const item = myServerList[i]
+  if (!item) return
+  if (item.func) {
+    item.func()
+  } else {
+    uni.showToast({ title: '正在开发中...', icon: 'none' })
+  }
+}
+
+// 设置
 </script>
 <template>
-  <view class="p-3">
-    <wd-navbar title="user" fixed placeholder safe-area-inset-top></wd-navbar>
+  <!-- <wd-navbar title="user" fixed placeholder safe-area-inset-top></wd-navbar> -->
+  <!-- 用户信息 -->
+  <view class="rounded-b-10 bg-main pt-safe-navbar">
+    <view class="flex justify-between p-4">
+      <view class="flex items-center">
+        <view class="h-14 w-14 overflow-hidden rounded-full">
+          <image :src="userInfo.userImg" alt="" class="h-full w-full" />
+        </view>
+        <view class="pl-4">
+          <view class="text-4 color-white">
+            {{ userInfo.userName }}
+          </view>
+          <view class="mt-1 text-3 color-white">
+            {{ phoneMask(userInfo.phone) }}
+          </view>
+        </view>
+      </view>
 
-    user
+      <!-- <view class="text-5">
+        <van-icon name="setting-o" class="mr-2 color-white" @click="openSetting" />
+        <van-icon name="phone-o" class="color-white" @click="openQQHref()" />
+      </view> -->
+    </view>
 
-    <wd-button @click="toDemo">主要按钮</wd-button>
-
-    <Tabbar tabbar-path="/pages/user/user" />
+    <!-- 我的积分 -->
+    <!-- <view class="mt-1 flex pb-26 color-white">
+      <view v-for="(item, index) in priceList" :key="index" class="flex-1 text-center">
+        <p class="text-[18px] line-height-6">
+          <CountTo :start-val="0" :end-val="item.value" :duration="3000" />
+        </p>
+        <p class="text-3 line-height-17px">
+          {{ item.label }}
+        </p>
+      </view>
+    </view> -->
   </view>
+
+  <!-- 我的订单 -->
+  <!-- <view class="mt--21">
+    <ListCard
+      :list-data="orderList"
+      right-title="全部订单"
+      title="我的订单"
+      @on-right-click="onOrderListRightClick"
+      @on-handle-click="onOrderListClick"
+    />
+
+    <view class="h-3" />
+
+    <ListCard
+      :list-data="myServerList"
+      title="我的服务"
+      :icon-height="26"
+      @on-handle-click="onServerListClick"
+    />
+  </view> -->
+  <view class="p-3">
+    <RecommendedForYou :hide-add="true" />
+  </view>
+  <Tabbar tabbar-path="/pages/user/user" />
 </template>
 
 <style lang="scss" scoped></style>

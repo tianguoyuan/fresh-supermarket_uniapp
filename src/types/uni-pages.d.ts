@@ -7,8 +7,10 @@ interface NavigateToOptions {
   url: "/pages/dashboard" |
        "/pages/index/index" |
        "/pages/kind/kind" |
+       "/pages/shopping/address" |
        "/pages/shopping/shopping" |
        "/pages/user/login" |
+       "/pages/user/myOrder" |
        "/pages/user/register" |
        "/pages/user/user" |
        "/pages/index/search/result" |
