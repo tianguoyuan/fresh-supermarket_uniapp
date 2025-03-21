@@ -1,5 +1,7 @@
 // @import './iconfont.css';
 
+@import '@tuniao/tn-style/dist/uniapp/index.css';
+
 .test {
   // 可以通过 @apply 多个样式封装整体样式
   @apply mt-4 ml-4;
