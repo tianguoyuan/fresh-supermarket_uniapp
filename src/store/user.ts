@@ -18,11 +18,6 @@ export const useUserStore = defineStore(
       return !!token.value
     })
 
-    function clearUserInfo() {
-      token.value = ''
-      userId.value = ''
-    }
-
     const userImg = ref('')
     function changeUserImg(v) {
       userImg.value = v
@@ -36,6 +31,11 @@ export const useUserStore = defineStore(
     const phone = ref('')
     function changeUserPhone(v) {
       phone.value = v
+    }
+
+    function clearUserInfo() {
+      token.value = ''
+      userId.value = ''
     }
 
     return {

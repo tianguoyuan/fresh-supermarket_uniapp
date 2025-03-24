@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import { ColorEnum } from '@/enums/ColorEnum'
+import { useTabbarStore } from '@/store/tabbar'
+
+const tabbarStore = useTabbarStore()
 
 const tabbarList = [
   { title: '首页', icon: 'home', path: '/pages/index/index' },
@@ -32,6 +35,7 @@ function pageTo(index: number) {
 
 <template>
   <wd-tabbar
+    v-if="!tabbarStore.hideTabbar"
     :model-value="tabbarIndex"
     :fixed="isFixed"
     bordered

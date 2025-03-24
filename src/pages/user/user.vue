@@ -15,6 +15,9 @@ import IMGOrder3 from '@/assets/icons/order3.svg'
 import IMGOrder4 from '@/assets/icons/order4.svg'
 import IMGOrder5 from '@/assets/icons/order5.svg'
 import { phoneMask } from '@/utils/filter'
+import { openQQHref } from '@/utils/path'
+import { personalIntegral, PersonalIntegralRes } from '@/service/personal'
+import { useTabbarStore } from '@/store/tabbar'
 
 defineOptions({
   name: 'User',
@@ -23,6 +26,7 @@ defineOptions({
 const userStore = useUserStore()
 const userInfo = computed(() => userStore)
 
+const tabbarStore = useTabbarStore()
 // 订单功能
 const orderList = [
   { iconClass: IMGOrder1, name: '待付款', active: true },
@@ -59,7 +63,7 @@ const myServerList = [
   {
     iconClass: IMGMyServer5,
     name: '在线客服',
-    // func: openQQHref,
+    func: openQQHref,
   },
 ]
 function onServerListClick(i: number) {
@@ -73,12 +77,49 @@ function onServerListClick(i: number) {
 }
 
 // 设置
+const settingValue = ref('002')
+const columns = ref([
+  {
+    value: '001',
+    label: '退出登录',
+  },
+  {
+    value: '002',
+    label: '取消',
+  },
+])
+function handleConfirm({ value }) {
+  console.log('value', value, typeof value)
+  if (value === '001') {
+    userStore.clearUserInfo()
+    uni.reLaunch({
+      url: '/pages/user/login',
+    })
+  }
+}
+function openSetting() {
+  tabbarStore.changeHideTabbar(true)
+}
+function closeSetting() {
+  tabbarStore.changeHideTabbar(false)
+}
+
+// 积分列表
+const priceList = ref<PersonalIntegralRes['integralList']>([])
+
+init()
+async function init() {
+  const {
+    data: { integralList = [] },
+  } = await personalIntegral({ userId: userInfo.value.userId })
+  priceList.value = integralList
+}
 </script>
 <template>
-  <!-- <wd-navbar title="user" fixed placeholder safe-area-inset-top></wd-navbar> -->
   <!-- 用户信息 -->
-  <view class="rounded-b-10 bg-main pt-safe-navbar">
+  <view class="rounded-b-10 bg-main pt-safe">
     <view class="flex justify-between p-4">
+      <!-- 头像信息 -->
       <view class="flex items-center">
         <view class="h-14 w-14 overflow-hidden rounded-full">
           <image :src="userInfo.userImg" alt="" class="h-full w-full" />
@@ -93,27 +134,46 @@ function onServerListClick(i: number) {
         </view>
       </view>
 
-      <!-- <view class="text-5">
-        <van-icon name="setting-o" class="mr-2 color-white" @click="openSetting" />
-        <van-icon name="phone-o" class="color-white" @click="openQQHref()" />
-      </view> -->
+      <view class="text-5 flex">
+        <!-- 设置弹窗 -->
+
+        <wd-select-picker
+          v-model="settingValue"
+          :columns="columns"
+          use-default-slot
+          type="radio"
+          @confirm="handleConfirm"
+          @open="openSetting"
+          @close="closeSetting"
+        >
+          <wd-icon name="setting" color="#fff"></wd-icon>
+        </wd-select-picker>
+        <view class="w-2"></view>
+        <wd-icon name="call" color="#fff" @click="openQQHref()" />
+      </view>
     </view>
 
     <!-- 我的积分 -->
-    <!-- <view class="mt-1 flex pb-26 color-white">
+    <view class="mt-1 flex pb-26 color-white">
       <view v-for="(item, index) in priceList" :key="index" class="flex-1 text-center">
-        <p class="text-[18px] line-height-6">
-          <CountTo :start-val="0" :end-val="item.value" :duration="3000" />
-        </p>
-        <p class="text-3 line-height-17px">
+        <view class="text-[18px] line-height-6">
+          <wd-count-to
+            :start-val="0"
+            :end-val="item.value"
+            :duration="3000"
+            :font-size="20"
+            color="#fff"
+          ></wd-count-to>
+        </view>
+        <view class="text-3 line-height-17px">
           {{ item.label }}
-        </p>
+        </view>
       </view>
-    </view> -->
+    </view>
   </view>
 
   <!-- 我的订单 -->
-  <!-- <view class="mt--21">
+  <view class="mt--21">
     <ListCard
       :list-data="orderList"
       right-title="全部订单"
@@ -130,9 +190,9 @@ function onServerListClick(i: number) {
       :icon-height="26"
       @on-handle-click="onServerListClick"
     />
-  </view> -->
+  </view>
   <view class="p-3">
-    <RecommendedForYou :hide-add="true" />
+    <RecommendedForYou />
   </view>
   <Tabbar tabbar-path="/pages/user/user" />
 </template>
@@ -143,7 +203,7 @@ function onServerListClick(i: number) {
 {
   style: {
     navigationStyle: 'custom',
-    navigationBarTitleText: '首页',
+    navigationBarTitleText: '用户中心',
   },
 }
 </route>

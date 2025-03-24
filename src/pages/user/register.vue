@@ -103,7 +103,7 @@ export default {
 </script>
 
 <template>
-  <view id="container" class="login flex flex-col justify-between">
+  <view id="container" class="login flex flex-col justify-between bg-#fff">
     <wd-navbar title="" fixed placeholder safe-area-inset-top>
       <template #left>
         <wd-icon name="home1" @click="toDashboard"></wd-icon>

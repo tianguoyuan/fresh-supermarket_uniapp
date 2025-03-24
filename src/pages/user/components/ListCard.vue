@@ -39,12 +39,11 @@ const emits = defineEmits<{
         class="relative flex flex-1 flex-col items-center justify-center"
         @click="emits('onHandleClick', index)"
       >
-        <view v-if="item.img" :style="{ height: `${iconHeight}px` }">
-          <image class="h-full" :src="item.img" alt="" />
+        <view v-if="item.img" :style="{ width: `${iconHeight}px` }">
+          <image class="w-full" mode="widthFix" :src="item.img" alt="" />
         </view>
         <view v-else-if="item.iconClass">
-          <!-- <wd-icon name="arrow-right" :size="iconHeight + 'px'"></wd-icon> -->
-          <image class="h-3" :style="{ height: iconHeight } + 'px'" :src="item.iconClass" />
+          <image :style="{ height: iconHeight + 'px' }" mode="heightFix" :src="item.iconClass" />
         </view>
         <view class="line-clamp-1 mt-2 color-[#666]">
           {{ item.name }}

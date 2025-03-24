@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { findCommonRecommendList, type FindCommonRecommendListRes } from '@/service/common'
-import CardWaterfall from './CardWatefall.vue'
+import CardWaterfall from './CardWaterfall.vue'
 
 const cardList = ref<FindCommonRecommendListRes['list']>([])
+
+defineProps<{
+  hideAdd?: boolean
+}>()
 
 async function init() {
   const { data } = await findCommonRecommendList({

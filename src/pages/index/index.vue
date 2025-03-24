@@ -105,7 +105,7 @@ export default {
         <view
           v-for="item in foodKindList"
           :key="item.id"
-          class="w-20% flex shrink-0 flex-col overflow-hidden px-1"
+          class="w-22% flex shrink-0 flex-col overflow-hidden px-1"
           @click="foodKindItemClick(item.name)"
         >
           <view class="flex justify-center">

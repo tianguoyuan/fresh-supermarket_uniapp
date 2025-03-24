@@ -34,7 +34,7 @@ const props = defineProps<{
             <view class="ml-2px text-3 color-#999">/箱</view>
           </view>
           <image
-            v-if="props.hideAdd"
+            v-if="!props.hideAdd"
             src="../assets/icons/add-shopping.svg"
             mode="widthFix"
             class="w-5 mr-1"

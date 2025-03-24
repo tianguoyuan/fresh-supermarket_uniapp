@@ -70,7 +70,8 @@
       "type": "page",
       "layout": "default",
       "style": {
-        "navigationBarTitleText": ""
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "地址管理"
       }
     },
     {
@@ -86,7 +87,7 @@
       "type": "page",
       "layout": "default",
       "style": {
-        "navigationBarTitleText": "登录",
+        "navigationBarTitleText": "用户-登录",
         "navigationStyle": "custom"
       }
     },
@@ -95,7 +96,8 @@
       "type": "page",
       "layout": "default",
       "style": {
-        "navigationBarTitleText": ""
+        "navigationBarTitleText": "用户-我的订单",
+        "navigationStyle": "custom"
       }
     },
     {
@@ -112,7 +114,7 @@
       "type": "page",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "首页"
+        "navigationBarTitleText": "用户中心"
       }
     },
     {

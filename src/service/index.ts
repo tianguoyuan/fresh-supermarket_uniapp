@@ -29,7 +29,9 @@ interface UserInfoParams {
   token: string
 }
 interface UserInfoRes {
-  userId: string
+  img: string
+  name: string
+  phone: string
 }
 export const getUserInfo = (data: UserInfoParams) => {
   return http.post<UserInfoRes>('/user/info', data)

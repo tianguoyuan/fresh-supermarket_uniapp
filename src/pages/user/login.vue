@@ -36,7 +36,11 @@ function handleSubmit() {
         token: loginResult.data.token,
       })
       userStore.changeToken(loginResult.data.token)
-      userStore.changeUserId(infoResult.data.userId)
+      userStore.changeUserId(loginResult.data.userId)
+
+      userStore.changeUserImg(infoResult.data.img)
+      userStore.changeUserName(infoResult.data.name)
+      userStore.changeUserPhone(infoResult.data.phone)
 
       if (redirectUrl.value) {
         const pushType = PageEnum.TABBAR_PAGE_LIST.includes(redirectUrl.value)
@@ -101,7 +105,7 @@ export default {
 </script>
 
 <template>
-  <view id="container" class="login flex flex-col justify-between">
+  <view id="container" class="login flex flex-col justify-between bg-#fff">
     <wd-navbar title="" fixed placeholder safe-area-inset-top>
       <template #left>
         <wd-icon name="home1" @click="toDashboard"></wd-icon>
@@ -188,7 +192,7 @@ export default {
 {
   layout: 'default',
   style: {
-    navigationBarTitleText: '登录',
+    navigationBarTitleText: '用户-登录',
     navigationStyle: 'custom',
   },
 }
