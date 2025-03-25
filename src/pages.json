@@ -75,6 +75,14 @@
       }
     },
     {
+      "path": "pages/shopping/settleAccount",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
       "path": "pages/shopping/shopping",
       "type": "page",
       "style": {

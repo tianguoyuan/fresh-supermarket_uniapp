@@ -8,6 +8,7 @@ interface NavigateToOptions {
        "/pages/index/index" |
        "/pages/kind/kind" |
        "/pages/shopping/address" |
+       "/pages/shopping/settleAccount" |
        "/pages/shopping/shopping" |
        "/pages/user/login" |
        "/pages/user/myOrder" |

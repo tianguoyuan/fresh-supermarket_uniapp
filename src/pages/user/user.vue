@@ -52,8 +52,10 @@ const myServerList = [
     iconClass: IMGMyServer1,
     name: '收货地址',
     func: () => {
+      const pages = getCurrentPages()
+      const path = pages[pages.length - 1].route
       uni.navigateTo({
-        url: `/pages/shopping/address`,
+        url: `/pages/shopping/address?back=${encodeURIComponent(path)}&noHandleClick=1`,
       })
     },
   },
