@@ -24,7 +24,7 @@ const tab = ref('Design')
 </script>
 
 <template>
-  <wd-navbar title="我的订单" left-arrow fixed placeholder>
+  <wd-navbar title="我的订单" left-arrow fixed placeholder safe-area-inset-top>
     <template #capsule>
       <wd-navbar-capsule @back="pageBack" @back-home="pageToHome" />
     </template>

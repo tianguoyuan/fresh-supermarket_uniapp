@@ -84,7 +84,13 @@ export default {
   <view class="p-3">
     <!-- 搜索框 -->
     <view class="relative">
-      <wd-search disabled hide-cancel :placeholder="hotSearchMsg" placeholder-left />
+      <wd-search
+        disabled
+        hide-cancel
+        :placeholder="hotSearchMsg"
+        placeholder-left
+        custom-class="searchBox"
+      />
       <view class="absolute left-0 right-0 top-0 bottom-0" @click="toSearchPage"></view>
     </view>
 
@@ -147,6 +153,10 @@ export default {
     width: 100% !important;
     height: 100% !important;
   }
+}
+
+:deep(.searchBox) {
+  background-color: transparent !important;
 }
 </style>
 

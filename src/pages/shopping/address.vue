@@ -162,7 +162,14 @@ export default {
 </script>
 
 <template>
-  <wd-navbar title="地址管理" fixed placeholder left-arrow @click-left="pageBack" />
+  <wd-navbar
+    title="地址管理"
+    fixed
+    placeholder
+    left-arrow
+    safe-area-inset-top
+    @click-left="pageBack"
+  />
 
   <view class="p-3">
     <view class="flex justify-between text-3">
@@ -182,83 +189,86 @@ export default {
       </view>
     </view>
 
-    <AddressItem
-      v-for="(v, i) in addressList"
-      :key="i"
-      class="mt-3"
-      :item="v"
-      :show-flag="isEdit ? 'editAndRemove' : 'edit'"
-      @remove-click="removeClick"
-      @checked-click="checkedClick"
-      @right-click="rightClick"
-      @handle-click="handleClick"
-    />
+    <view v-for="(v, i) in addressList" :key="i" class="mt-3">
+      <AddressItem
+        :item="v"
+        :show-flag="isEdit ? 'editAndRemove' : 'edit'"
+        @remove-click="removeClick"
+        @checked-click="checkedClick"
+        @right-click="rightClick"
+        @handle-click="handleClick"
+      />
+    </view>
     <view class="h-10" />
 
     <view>
       <wd-overlay :show="show" :z-index="501">
-        <wd-floating-panel v-model:height="height" :anchors="anchors">
-          <wd-form ref="form" :model="model" class="px-3">
-            <wd-cell-group border>
-              <wd-input
-                :model-value="
-                  model.province ? model.province + '-' + model.city + '-' + model.county : ''
-                "
-                label="所在地区"
-                label-width="100px"
-                prop="province"
-                clearable
-                placeholder="请填写所在地区"
-                :rules="[{ required: true, message: '请填写所在地区' }]"
-                @focus="() => (openRegionPicker = true)"
-              />
-              <TnRegionPicker
-                v-model="regionValue"
-                v-model:open="openRegionPicker"
-                :mask="true"
-                @confirm="pickerConfirm"
-              />
+        <wd-floating-panel v-model:height="height" :anchors="anchors" :content-draggable="false">
+          <wd-form ref="form" :model="model">
+            <view class="px-3">
+              <wd-cell-group border>
+                <view @click="() => (openRegionPicker = true)">
+                  <wd-input
+                    :model-value="
+                      model.province ? model.province + '-' + model.city + '-' + model.county : ''
+                    "
+                    label="所在地区"
+                    label-width="100px"
+                    prop="province"
+                    clearable
+                    readonly
+                    placeholder="请填写所在地区"
+                    :rules="[{ required: true, message: '请填写所在地区' }]"
+                  />
+                </view>
+                <TnRegionPicker
+                  v-model="regionValue"
+                  v-model:open="openRegionPicker"
+                  :mask="true"
+                  @confirm="pickerConfirm"
+                />
 
-              <wd-input
-                v-model="model.suffix"
-                label="详细地址"
-                label-width="100px"
-                prop="suffix"
-                clearable
-                placeholder="请填写详细地址"
-                :rules="[{ required: true, message: '请填写详细地址' }]"
-              />
-              <wd-input
-                v-model="model.username"
-                label="姓名"
-                label-width="100px"
-                prop="username"
-                clearable
-                placeholder="请填写姓名"
-                :rules="[{ required: true, message: '请填写姓名' }]"
-              />
-              <wd-input
-                v-model="model.phone"
-                label="手机号"
-                label-width="100px"
-                prop="phone"
-                clearable
-                placeholder="请填写手机号"
-                :rules="[{ required: true, message: '请填写手机号' }]"
-              />
-            </wd-cell-group>
-            <view class="mt-3 flex">
-              <view
-                class="h-10 flex-1 bg-white border-#dcdee0 border-1 border-solid rounded-full flex items-center justify-center mr-3"
-                @click="handleCancel"
-              >
-                取消
-              </view>
-              <view
-                class="h-10 flex-1 bg-#1989fa color-white border-#1989fa border-solid rounded-full flex items-center justify-center"
-                @click="handleSubmit"
-              >
-                提交
+                <wd-input
+                  v-model="model.suffix"
+                  label="详细地址"
+                  label-width="100px"
+                  prop="suffix"
+                  clearable
+                  placeholder="请填写详细地址"
+                  :rules="[{ required: true, message: '请填写详细地址' }]"
+                />
+                <wd-input
+                  v-model="model.username"
+                  label="姓名"
+                  label-width="100px"
+                  prop="username"
+                  clearable
+                  placeholder="请填写姓名"
+                  :rules="[{ required: true, message: '请填写姓名' }]"
+                />
+                <wd-input
+                  v-model="model.phone"
+                  label="手机号"
+                  label-width="100px"
+                  prop="phone"
+                  clearable
+                  placeholder="请填写手机号"
+                  :rules="[{ required: true, message: '请填写手机号' }]"
+                />
+              </wd-cell-group>
+              <view class="mt-3 flex">
+                <view
+                  class="h-10 flex-1 bg-white border-#dcdee0 border-1 border-solid rounded-full flex items-center justify-center mr-3"
+                  @click="handleCancel"
+                >
+                  取消
+                </view>
+                <view
+                  class="h-10 flex-1 bg-#1989fa color-white border-#1989fa border-solid rounded-full flex items-center justify-center"
+                  @click="handleSubmit"
+                >
+                  提交
+                </view>
               </view>
             </view>
           </wd-form>

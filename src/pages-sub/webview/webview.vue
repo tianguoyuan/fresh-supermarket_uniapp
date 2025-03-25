@@ -1,8 +1,10 @@
 <script lang="ts" setup>
+import { urlDecode } from '@/utils/url'
+
 const url = ref('')
 onLoad((query) => {
   console.log('query', query)
-  url.value = decodeURIComponent(query.url)
+  url.value = urlDecode(query.url)
   console.log('url', url)
 })
 </script>

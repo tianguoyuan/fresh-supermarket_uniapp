@@ -20,9 +20,16 @@ const checkedList = []
 </script>
 <template>
   <wd-navbar title="购物车" fixed placeholder safe-area-inset-top>
+    <!-- #ifdef MP-WEIXIN -->
+    <template #left>
+      <view class="color-#999 text-14px">删除</view>
+    </template>
+    <!-- #endif -->
+    <!-- #ifndef MP-WEIXIN -->
     <template #right>
       <view class="color-#999 text-14px">删除</view>
     </template>
+    <!-- #endif -->
   </wd-navbar>
   <view>
     <view class="p-3 flex-1 relative">

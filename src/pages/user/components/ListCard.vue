@@ -45,7 +45,7 @@ const emits = defineEmits<{
         <view v-else-if="item.iconClass">
           <image :style="{ height: iconHeight + 'px' }" mode="heightFix" :src="item.iconClass" />
         </view>
-        <view class="line-clamp-1 mt-2 color-[#666]">
+        <view class="line-clamp-1 mt-2 color-[#666] text-3">
           {{ item.name }}
         </view>
         <view v-if="item.active" class="absolute right-2.5 top-0 h-2 w-2 rounded-full bg-red" />

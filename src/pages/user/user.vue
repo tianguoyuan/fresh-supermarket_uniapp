@@ -18,6 +18,8 @@ import { phoneMask } from '@/utils/filter'
 import { openQQHref } from '@/utils/path'
 import { personalIntegral, PersonalIntegralRes } from '@/service/personal'
 import { useTabbarStore } from '@/store/tabbar'
+import { urlEncode } from '@/utils/url'
+import PLATFORM from '@/utils/platform'
 
 defineOptions({
   name: 'User',
@@ -55,7 +57,7 @@ const myServerList = [
       const pages = getCurrentPages()
       const path = pages[pages.length - 1].route
       uni.navigateTo({
-        url: `/pages/shopping/address?back=${encodeURIComponent(path)}&noHandleClick=1`,
+        url: `/pages/shopping/address?back=/${urlEncode(path)}&noHandleClick=1`,
       })
     },
   },
@@ -119,7 +121,9 @@ async function init() {
 </script>
 <template>
   <!-- 用户信息 -->
-  <view class="rounded-b-10 bg-main pt-safe">
+  <view class="rounded-b-10 bg-main">
+    <view class="pt-safe"></view>
+    <view v-if="PLATFORM.isMp" class="h-44px"></view>
     <view class="flex justify-between p-4">
       <!-- 头像信息 -->
       <view class="flex items-center">
@@ -136,9 +140,8 @@ async function init() {
         </view>
       </view>
 
-      <view class="text-5 flex">
+      <view class="text-5 flex" :class="{ 'items-end': PLATFORM.isMp }">
         <!-- 设置弹窗 -->
-
         <wd-select-picker
           v-model="settingValue"
           :columns="columns"
