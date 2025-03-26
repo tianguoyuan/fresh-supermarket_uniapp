@@ -4,7 +4,6 @@ import { ConfigEnum } from '@/enums/ConfigEnum'
 import { shoppingAddress, ShoppingAddressResItem } from '@/service/shopping'
 import { useUserStore } from '@/store'
 import { useMessage } from 'wot-design-uni'
-import { areaList } from '@vant/area-data'
 import TnRegionPicker from '@tuniao/tnui-vue3-uniapp/components/region-picker/src/region-picker.vue'
 import { uuid } from 'wot-design-uni/components/common/util'
 import { PageEnum } from '@/enums/PageEnum'
@@ -20,8 +19,10 @@ const pathParams = ref<{ back: string; noHandleClick: '' | '1' }>({
   noHandleClick: '',
 })
 onLoad((query) => {
-  pathParams.value.back = urlDecode(query.back)
-  pathParams.value.noHandleClick = query.noHandleClick
+  console.log('shopping-address: onLoad-query', query)
+
+  pathParams.value.back = query.back ? urlDecode(query.back) : ''
+  pathParams.value.noHandleClick = query.noHandleClick ? query.noHandleClick : ''
 })
 
 function pageBack() {
