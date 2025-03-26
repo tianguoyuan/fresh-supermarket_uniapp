@@ -6,7 +6,10 @@ onPageScroll((e) => {
 </script>
 
 <template>
-  <wd-backtop :scroll-top="scrollTop"></wd-backtop>
+  <wd-backtop
+    :scroll-top="scrollTop"
+    custom-style="color: #fff !important;background-color: #40ae36 !important;"
+  ></wd-backtop>
 </template>
 
 <style lang="scss" scoped>

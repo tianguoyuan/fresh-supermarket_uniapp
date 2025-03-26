@@ -71,7 +71,7 @@ export default {
       </wd-navbar>
     </view>
 
-    <view class="flex-1 flex overflow-hidden">
+    <view v-if="listData" class="flex-1 flex overflow-hidden">
       <view class="overflow-auto w-full">
         <SidebarList :list-data="listData" />
       </view>
@@ -80,7 +80,7 @@ export default {
     <!-- #ifdef MP-WEIXIN -->
     <!-- <view class="pb-safe-tabbar"></view> -->
     <!-- #endif -->
-    <Tabbar tabbar-path="/pages/kind/kind" :is-placeholder="true" />
+    <Tabbar tabbar-path="/pages/kind/kind" />
   </view>
 </template>
 

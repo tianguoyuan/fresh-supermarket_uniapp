@@ -15,6 +15,6 @@ const themeVars: ConfigProviderThemeVars = {
     <wd-toast />
     <wd-message-box />
 
-    <BackTop custom-style="background-color:#4d80f0; color:#fff;" />
+    <BackTop />
   </wd-config-provider>
 </template>

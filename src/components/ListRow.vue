@@ -15,8 +15,13 @@ defineExpose({
   <view v-for="(item, index) in props.listData" :key="index" class="category m-3">
     <view class="text-3 color-gray font-600">{{ item.moduleTitle }}</view>
     <view v-for="(cell, cellIndex) in item.list" :key="cellIndex" class="flex my-3">
-      <view class="mr-3">
-        <wd-img :width="110" :height="110" :src="cell.cover" lazy-load enable-preview />
+      <view class="mr-3 w-27 h-27">
+        <wd-img
+          custom-style="width:100%; height:100%;"
+          :src="cell.cover"
+          lazy-load
+          enable-preview
+        />
       </view>
       <view class="flex flex-col justify-between flex-1">
         <view>

@@ -15,49 +15,24 @@ const props = defineProps<{
 }>()
 
 const listRowRef = ref<InstanceType<typeof ListRow> | null>(null)
-watch(
-  () => props.listData,
-  async (v) => {
-    if (!props.listData.length) return
-    await nextTick()
 
-    setTimeout(() => {
-      getRect('.category', true, listRowRef.value.instance.proxy).then((rects) => {
-        if (!isArray(rects)) return
-        const diffH = PLATFORM.isMp ? 100 : 50
-        itemScrollTop.value = rects.map((item) => (item.top ? item.top - diffH : 0))
-        scrollTop.value = 0
-        // scrollTop.value = rects[active.value].top ? rects[active.value].top - 50 : 0
-      })
-    }, 1000)
-  },
-  {
-    deep: true,
-    immediate: true,
-  },
-)
+onMounted(() => {
+  setTimeout(() => {
+    getRect('.category', true, listRowRef.value.instance.proxy).then((rects) => {
+      if (!isArray(rects)) return
+      itemScrollTop.value = rects.map((item) => item.top)
+    })
+  }, 1000)
+})
 
 function handleChange({ value }) {
   active.value = value
-  scrollTop.value = itemScrollTop.value[value]
+  scrollTop.value = itemScrollTop.value[value] - 55
 }
 
-const debounceFunc = debounce(
-  300,
-  (elTop) => {
-    scrollTop.value = +elTop
-  },
-  { atBegin: false },
-)
 function onScroll(e) {
   const { scrollTop: elTop } = e.detail
-  debounceFunc(elTop)
-  const threshold = 50 // 下一个标题与顶部的距离
-  if (elTop < threshold) {
-    active.value = 0
-    return
-  }
-  const index = itemScrollTop.value.findIndex((top) => top > elTop && top - elTop <= threshold)
+  const index = itemScrollTop.value.findIndex((top) => top > elTop)
   if (index > -1) {
     active.value = index
   }

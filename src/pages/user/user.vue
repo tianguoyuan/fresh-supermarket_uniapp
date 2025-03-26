@@ -84,20 +84,22 @@ function onServerListClick(i: number) {
 }
 
 // 设置
-const settingValue = ref('002')
-const columns = ref([
+const actions = ref([
   {
-    value: '001',
-    label: '退出登录',
+    value: '100',
+    name: '退出登录',
   },
   {
-    value: '002',
-    label: '取消',
+    value: '0',
+    name: '取消',
   },
 ])
-function handleConfirm({ value }) {
-  console.log('value', value, typeof value)
-  if (value === '001') {
+const showSetting = ref(false)
+function handleConfirm({ item }) {
+  console.log('v', item, item.value)
+  if (item.value === '0') {
+    showSetting.value = false
+  } else if (item.value === '100') {
     userStore.clearUserInfo()
     uni.reLaunch({
       url: '/pages/user/login',
@@ -105,10 +107,10 @@ function handleConfirm({ value }) {
   }
 }
 function openSetting() {
-  tabbarStore.changeHideTabbar(true)
+  showSetting.value = true
 }
 function closeSetting() {
-  tabbarStore.changeHideTabbar(false)
+  showSetting.value = false
 }
 
 // 积分列表
@@ -146,17 +148,17 @@ async function init() {
 
       <view class="text-5 flex" :class="{ 'items-end': PLATFORM.isMp }">
         <!-- 设置弹窗 -->
-        <wd-select-picker
-          v-model="settingValue"
-          :columns="columns"
-          use-default-slot
-          type="radio"
-          @confirm="handleConfirm"
-          @open="openSetting"
+        <wd-action-sheet
+          :close-on-click-modal="false"
+          :model-value="showSetting"
+          :actions="actions"
+          :z-index="100"
+          custom-style="margin:0;border-radius:0;"
           @close="closeSetting"
-        >
-          <wd-icon name="setting" color="#fff"></wd-icon>
-        </wd-select-picker>
+          @select="handleConfirm"
+        />
+        <wd-icon name="setting" color="#fff" @click="openSetting"></wd-icon>
+
         <view class="w-2"></view>
         <wd-icon name="call" color="#fff" @click="openQQHref()" />
       </view>
