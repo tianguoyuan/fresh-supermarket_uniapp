@@ -2,9 +2,14 @@
 <script lang="ts" setup>
 import RecommendedForYou from '@/components/RecommendedForYou.vue'
 import Tabbar from '@/components/Tabbar.vue'
+import PLATFORM from '@/utils/platform'
 
 defineOptions({
   name: 'Shopping',
+})
+
+onLoad(() => {
+  if (PLATFORM.isApp) uni.hideTabBar()
 })
 
 function pageToHome() {

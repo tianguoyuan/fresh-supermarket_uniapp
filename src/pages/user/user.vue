@@ -24,6 +24,9 @@ import PLATFORM from '@/utils/platform'
 defineOptions({
   name: 'User',
 })
+onLoad(() => {
+  if (PLATFORM.isApp) uni.hideTabBar()
+})
 
 const userStore = useUserStore()
 const userInfo = computed(() => userStore)
@@ -123,7 +126,8 @@ async function init() {
   <!-- 用户信息 -->
   <view class="rounded-b-10 bg-main">
     <view class="pt-safe"></view>
-    <view v-if="PLATFORM.isMp" class="h-44px"></view>
+    <!-- 不是h5平台都需要 -->
+    <view v-if="!PLATFORM.isH5" class="h-44px"></view>
     <view class="flex justify-between p-4">
       <!-- 头像信息 -->
       <view class="flex items-center">

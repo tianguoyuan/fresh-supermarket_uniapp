@@ -13,6 +13,10 @@ defineOptions({
   name: 'Home',
 })
 
+onLoad(() => {
+  if (PLATFORM.isApp) uni.hideTabBar()
+})
+
 // 小程序显示 分享
 if (PLATFORM.isMp) {
   uni.showShareMenu()
@@ -66,20 +70,18 @@ export default {
     <template #left>
       <view>
         <wd-icon name="location" color="white"></wd-icon>
-        <!-- #ifndef H5 -->
-        <wd-icon name="scan" color="white" custom-class="ml-5"></wd-icon>
-        <wd-icon name="share" color="white" custom-class="ml-5"></wd-icon>
-        <!-- #endif -->
+        <template v-if="PLATFORM.isMp">
+          <wd-icon name="scan" color="white" custom-class="ml-5"></wd-icon>
+          <wd-icon name="share" color="white" custom-class="ml-5"></wd-icon>
+        </template>
       </view>
     </template>
-    <!-- #ifdef H5 -->
-    <template #right>
+    <template v-if="!PLATFORM.isMp" #right>
       <view>
         <wd-icon name="scan" color="white"></wd-icon>
         <wd-icon name="share" color="white" custom-class="ml-5"></wd-icon>
       </view>
     </template>
-    <!-- #endif -->
   </wd-navbar>
   <view class="p-3">
     <!-- 搜索框 -->

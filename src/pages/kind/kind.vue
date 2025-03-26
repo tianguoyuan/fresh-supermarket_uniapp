@@ -4,12 +4,15 @@
 import Tabbar from '@/components/Tabbar.vue'
 import { getKindList, type kindListRes } from '@/service/kind'
 import SidebarList from '@/components/SidebarList.vue'
+import PLATFORM from '@/utils/platform'
 
 defineOptions({
   name: 'Kind',
 })
 
 onLoad(() => {
+  if (PLATFORM.isApp) uni.hideTabBar()
+
   init()
 })
 
