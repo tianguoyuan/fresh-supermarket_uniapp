@@ -53,9 +53,26 @@
       "type": "page",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "首页"
+        "navigationBarTitleText": "首页",
+        "onReachBottomDistance": 100
       },
       "needLogin": true
+    },
+    {
+      "path": "pages/index/productDetail",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "产品详情"
+      }
+    },
+    {
+      "path": "pages/index/productList",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "产品列表"
+      }
     },
     {
       "path": "pages/kind/kind",

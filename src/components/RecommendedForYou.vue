@@ -4,7 +4,7 @@ import CardWaterfall from './CardWaterfall.vue'
 
 const cardList = ref<FindCommonRecommendListRes['list']>([])
 
-defineProps<{
+const props = defineProps<{
   hideAdd?: boolean
 }>()
 
@@ -36,7 +36,7 @@ defineExpose({
     </view>
 
     <view class="mt-3">
-      <CardWaterfall :list="cardList" v-bind="$attrs" />
+      <!-- <CardWaterfall :list="cardList" :hide-add="props.hideAdd" /> -->
     </view>
   </view>
 </template>

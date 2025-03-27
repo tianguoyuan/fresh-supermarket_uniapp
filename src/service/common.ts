@@ -1,6 +1,6 @@
 import { http } from '@/utils/http'
 
-interface CommonRecommendListItem {
+export interface CommonRecommendListItem {
   id: string
   title: string
   cover: string
@@ -13,7 +13,7 @@ interface CommonRecommendListItem {
   checked: boolean
   num: number // 数量
 }
-interface CommonBaseListParams {
+export interface CommonBaseListParams {
   pageNum: number
   pageSize: number
   order: 'asc' | 'desc'

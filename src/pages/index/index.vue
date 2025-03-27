@@ -1,13 +1,23 @@
 <!-- 使用 type="home" 属性设置首页，其他页面不需要设置，默认为page；推荐使用json5，更强大，且允许注释 -->
 <script lang="ts" setup>
+import CardItem from '@/components/CardItem.vue'
+import CardWaterfall from '@/components/CardWaterfall.vue'
 import Tabbar from '@/components/Tabbar.vue'
+import { CommonBaseListParams } from '@/service/common'
 import {
   findHomeFoodKindBanner,
   searchDefaultMsg,
   getHomeBanner,
+  findHomeGreatDealList,
   type HomeFoodKindBannerRes,
+  type FindHomeGreatDealListRes,
+  type FindHomeTagListRes,
+  findHomeTagList,
+  findHomeList,
+  FindHomeListRes,
 } from '@/service/home'
 import PLATFORM from '@/utils/platform'
+import { urlEncode } from '@/utils/url'
 
 defineOptions({
   name: 'Home',
@@ -40,6 +50,61 @@ function foodKindItemClick(name: string) {
   })
 }
 
+// 超划算列表
+const greatDealData = ref<FindHomeGreatDealListRes>({
+  desc: '',
+  id: '',
+  list: [],
+  title: '',
+})
+function pageToGreatDealMore() {
+  uni.navigateTo({
+    url: `/pages/index/search/search?msg=${greatDealData.value.title}&back=${urlEncode('/home')}`,
+  })
+}
+// 列表标签
+const tagList = ref<FindHomeTagListRes['tagList']>([])
+const tagIndex = ref<string>('')
+
+const dataList = ref<FindHomeListRes['list']>([])
+const total = ref(-1)
+const isMore = ref(true)
+const initPageParams: CommonBaseListParams = {
+  pageNum: 1,
+  pageSize: 10,
+  order: 'asc',
+}
+const pageParams = ref<CommonBaseListParams>({
+  ...initPageParams,
+})
+
+function getTagDataList(initFlag: boolean = false) {
+  if (initFlag) {
+    pageParams.value = { ...initPageParams }
+    isMore.value = true
+    dataList.value = [] // 解决列表不刷新问题 TnWaterFall bug
+  }
+  if (!isMore.value) return
+  findHomeList({ ...pageParams.value, tagId: tagIndex.value }).then(({ data }) => {
+    dataList.value = initFlag ? data.list : dataList.value.concat(data.list)
+    total.value = data.total
+
+    if (pageParams.value.pageNum >= 5) {
+      isMore.value = false
+    } else {
+      isMore.value = true
+      pageParams.value.pageNum += 1
+    }
+  })
+}
+// 获取标签列表
+watch(tagIndex, () => {
+  getTagDataList(true)
+})
+onReachBottom(() => {
+  getTagDataList()
+})
+
 onLoad(init)
 async function init() {
   // 首页-搜索-默认关键词
@@ -56,6 +121,20 @@ async function init() {
   findHomeFoodKindBanner().then(({ data: { foodKindBanner } }) => {
     foodKindList.value = foodKindBanner
   })
+
+  // 超划算
+  findHomeGreatDealList({ pageNum: 1, pageSize: 3, order: 'asc' }).then(({ data }) => {
+    greatDealData.value = data
+  })
+
+  // 列表标签
+  findHomeTagList().then(({ data }) => {
+    tagList.value = data.tagList
+    tagIndex.value = data.tagList[0]?.id
+  })
+
+  // 获取标签列表
+  // getTagDataList(true)
 }
 </script>
 <script lang="ts">
@@ -130,8 +209,63 @@ export default {
       </view>
     </view>
 
-    <Tabbar tabbar-path="/pages/index/index" />
+    <!-- 超划算 -->
+    <view class="mt-3 rounded-2 bg-white py-3 pb-0">
+      <view class="flex justify-between px-3">
+        <view class="flex items-end">
+          <view class="text-4">{{ greatDealData.title }}</view>
+          <view class="ml-1 rounded-2px bg-#EC9F09 px-2px py-2px text-9px color-white">
+            {{ greatDealData.desc }}
+          </view>
+        </view>
+        <view class="text-3 color-primary" @click="pageToGreatDealMore">查看全部</view>
+      </view>
+      <view class="grid grid-cols-3 mt-10px">
+        <CardItem
+          v-for="item in greatDealData.list.slice(0, 3)"
+          :key="item.id"
+          :item="item"
+          single
+        />
+      </view>
+    </view>
+
+    <!-- 列表标签 -->
+    <view class="mt-5 flex">
+      <view
+        v-for="(item, index) in tagList"
+        :key="item.id"
+        class="relative flex-1 flex-shrink-0 items-center text-center"
+        @click="tagIndex = item.id"
+      >
+        <view
+          class="text-4 line-height-5"
+          :class="[tagIndex === item.id ? 'color-#40AE36' : 'color-#333']"
+        >
+          {{ item.title }}
+        </view>
+        <view>
+          <view
+            class="text-3 line-height-4 transition-all"
+            :class="[
+              tagIndex === item.id ? 'rounded-full bg-main px-6px color-white' : 'color-#999 ',
+            ]"
+          >
+            {{ item.desc }}
+          </view>
+        </view>
+        <view
+          v-if="index !== tagList.length - 1"
+          class="absolute bottom-0 right-0 top-0 m-auto h-18px w-1px bg-#ececec"
+        />
+      </view>
+    </view>
+    <view class="h-4"></view>
+
+    <!-- <CardWaterfall :list="dataList" /> -->
+    <view v-if="!isMore" class="color-#999 text-3 center">暂无更多</view>
   </view>
+  <Tabbar tabbar-path="/pages/index/index" />
 </template>
 <style lang="scss" scoped>
 .card-swiper {
@@ -167,6 +301,7 @@ export default {
   style: {
     navigationStyle: 'custom',
     navigationBarTitleText: '首页',
+    onReachBottomDistance: 100,
   },
   needLogin: true, // 是否需要登录标识
 }

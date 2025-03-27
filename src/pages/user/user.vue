@@ -58,9 +58,9 @@ const myServerList = [
     name: '收货地址',
     func: () => {
       const pages = getCurrentPages()
-      const path = pages[pages.length - 1].route
+      const path = '/' + pages[pages.length - 1].route
       uni.navigateTo({
-        url: `/pages/shopping/address?back=/${urlEncode(path)}&noHandleClick=1`,
+        url: `/pages/shopping/address?back=${urlEncode(path)}&noHandleClick=1`,
       })
     },
   },

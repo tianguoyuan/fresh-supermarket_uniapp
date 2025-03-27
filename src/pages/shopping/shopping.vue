@@ -2,7 +2,11 @@
 <script lang="ts" setup>
 import RecommendedForYou from '@/components/RecommendedForYou.vue'
 import Tabbar from '@/components/Tabbar.vue'
+import { useShoppingStore } from '@/store/shopping'
 import PLATFORM from '@/utils/platform'
+import ShoppingCard from './components/ShoppingCard.vue'
+import { storeToRefs } from 'pinia'
+import { useMessage } from 'wot-design-uni'
 
 defineOptions({
   name: 'Shopping',
@@ -12,34 +16,58 @@ onLoad(() => {
   if (PLATFORM.isApp) uni.hideTabBar()
 })
 
+const message = useMessage()
+
+const shoppingStore = useShoppingStore()
+const { shoppingList, checkedList, isAllChecked, priceSum } = storeToRefs(shoppingStore)
+const { changeAllCheckedList, removeCheckedList } = shoppingStore
+
 function pageToHome() {
   uni.switchTab({
     url: '/pages/index/index',
   })
 }
 
-function changeAllCheckedList() {}
-const isAllChecked = true
-const priceSum = ''
-const checkedList = []
+async function handleClickRemove() {
+  await message.confirm({
+    title: '提示',
+    msg: '是否删除选中商品？',
+  })
+  removeCheckedList()
+}
 </script>
 <template>
   <wd-navbar title="购物车" fixed placeholder safe-area-inset-top>
     <!-- #ifdef MP-WEIXIN -->
     <template #left>
-      <view class="color-#999 text-14px">删除</view>
+      <view
+        :class="[checkedList.length ? 'color-#000' : 'color-#999']"
+        class="text-14px"
+        @click="handleClickRemove"
+      >
+        删除
+      </view>
     </template>
     <!-- #endif -->
     <!-- #ifndef MP-WEIXIN -->
     <template #right>
-      <view class="color-#999 text-14px">删除</view>
+      <view
+        :class="[checkedList.length ? 'color-#000' : 'color-#999']"
+        class="text-14px"
+        @click="handleClickRemove"
+      >
+        删除
+      </view>
     </template>
     <!-- #endif -->
   </wd-navbar>
   <view>
     <view class="p-3 flex-1 relative">
       <!-- 没有加购 -->
-      <view class="flex flex-col items-center justify-center rounded-2 bg-white py-5">
+      <view
+        v-if="!shoppingList.length"
+        class="flex flex-col items-center justify-center rounded-2 bg-white py-5"
+      >
         <view>购物车空空如也</view>
         <view class="mt-1 text-xs color-[#999]">赶紧慰劳一下自己吧</view>
         <view
@@ -51,6 +79,11 @@ const checkedList = []
       </view>
 
       <!-- 加购列表 -->
+      <view v-else>
+        <ShoppingCard v-if="shoppingList.length" :list="shoppingList" />
+      </view>
+
+      <!-- 为你推荐 -->
       <RecommendedForYou />
       <!-- 底部 占位 -->
       <view>
@@ -78,7 +111,7 @@ const checkedList = []
             <view
               to="/shopping/settleAccount"
               class="ml-3 rounded-full px-6 py-2 color-white"
-              :class="[checkedList.length ? 'bg-primary' : 'bg-#999 pointer-events-none']"
+              :class="[checkedList.length ? 'bg-main' : 'bg-#999 pointer-events-none']"
             >
               去结算
             </view>

@@ -1,14 +1,30 @@
 <script lang="ts" setup>
-import { FindCommonRecommendListRes } from '@/service/common'
+import type { FindCommonRecommendListRes } from '@/service/common'
+import { useShoppingStore } from '@/store/shopping'
 
 const props = defineProps<{
   item: FindCommonRecommendListRes['list'][0]
   hideAdd?: boolean
 }>()
+
+function pageToProductDetail() {
+  const pages = getCurrentPages()
+  const path = '/' + pages[pages.length - 1].route
+  uni.navigateTo({
+    url: `/pages/index/productDetail?id=${props.item.id}&back=${path}`,
+  })
+}
+// 购物车store
+const shoppingStore = useShoppingStore()
+const { addShoppingList } = shoppingStore
+
+function handleClickAdd(v: FindCommonRecommendListRes['list'][0]) {
+  addShoppingList(v, true)
+}
 </script>
 
 <template>
-  <view class="rounded-3 overflow-hidden mb-3">
+  <view class="rounded-3 overflow-hidden mb-3" @click="pageToProductDetail">
     <view class="w-full bg-white p-3">
       <image class="w-full" :src="props.item.cover" mode="widthFix" />
       <view class="mt-1 text-[14] line-height-[18px] line-clamp-2">
@@ -33,12 +49,14 @@ const props = defineProps<{
             <view class="text-4 color-#F55726">{{ item.price }}</view>
             <view class="ml-2px text-3 color-#999">/箱</view>
           </view>
-          <image
-            v-if="!props.hideAdd"
-            src="../assets/icons/add-shopping.svg"
-            mode="widthFix"
-            class="w-5 mr-1"
-          />
+          <view @click.stop.prevent="handleClickAdd(props.item)">
+            <image
+              v-if="!props.hideAdd"
+              src="../assets/icons/add-shopping.svg"
+              mode="widthFix"
+              class="w-5 mr-1"
+            />
+          </view>
         </view>
       </view>
     </view>

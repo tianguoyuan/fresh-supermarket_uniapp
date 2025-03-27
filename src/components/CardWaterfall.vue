@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import TnWaterFall from '@tuniao/tnui-vue3-uniapp/components/water-fall/src/water-fall.vue'
+import { TnWaterFall } from '@tuniao/tnui-vue3-uniapp'
 import CardWaterfallItem from './CardWaterfallItem.vue'
-import { type FindCommonRecommendListRes } from '@/service/common'
+import type { FindCommonRecommendListRes } from '@/service/common'
 
 const props = defineProps<{
   list: FindCommonRecommendListRes['list']
@@ -12,12 +12,12 @@ const props = defineProps<{
   <view>
     <TnWaterFall :data="props.list">
       <template #left="{ item }">
-        <view class="pr-1.5">
+        <view :key="item.id" class="pr-1.5">
           <CardWaterfallItem :item="item" :hide-add="props.hideAdd" />
         </view>
       </template>
       <template #right="{ item }">
-        <view class="pl-1.5">
+        <view :key="item.id" class="pl-1.5">
           <CardWaterfallItem :item="item" :hide-add="props.hideAdd" />
         </view>
       </template>

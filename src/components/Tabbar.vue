@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { ColorEnum } from '@/enums/ColorEnum'
+import { useShoppingStore } from '@/store/shopping'
 import { useTabbarStore } from '@/store/tabbar'
 
 const tabbarStore = useTabbarStore()
+const shoppingStore = useShoppingStore()
 
 const tabbarList = [
   { title: '首页', icon: 'home', path: '/pages/index/index' },
@@ -49,11 +51,17 @@ function pageTo(index: number) {
       :key="item.title"
       :title="item.title"
       :icon="item.icon"
+      :is-dot="!!(item.icon === 'shop' && shoppingStore.shoppingList.length)"
+      custom-class="tabbarItemBox"
     />
-    <!-- @click="pageTo(item.path)" -->
   </wd-tabbar>
 </template>
 
 <style lang="scss" scoped>
-//
+.tabbarItemBox {
+  :deep(.is-dot) {
+    width: 12px;
+    height: 12px;
+  }
+}
 </style>
