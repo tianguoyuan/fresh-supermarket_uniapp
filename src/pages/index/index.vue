@@ -262,7 +262,7 @@ export default {
     </view>
     <view class="h-4"></view>
 
-    <!-- <CardWaterfall :list="dataList" /> -->
+    <CardWaterfall :list="dataList" />
     <view v-if="!isMore" class="color-#999 text-3 center">暂无更多</view>
   </view>
   <Tabbar tabbar-path="/pages/index/index" />

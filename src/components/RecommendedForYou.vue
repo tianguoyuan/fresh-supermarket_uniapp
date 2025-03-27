@@ -36,7 +36,7 @@ defineExpose({
     </view>
 
     <view class="mt-3">
-      <!-- <CardWaterfall :list="cardList" :hide-add="props.hideAdd" /> -->
+      <CardWaterfall :list="cardList" :hide-add="props.hideAdd" />
     </view>
   </view>
 </template>

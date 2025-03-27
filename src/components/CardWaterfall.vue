@@ -12,12 +12,12 @@ const props = defineProps<{
   <view>
     <TnWaterFall :data="props.list">
       <template #left="{ item }">
-        <view :key="item.id" class="pr-1.5">
+        <view class="pr-1.5">
           <CardWaterfallItem :item="item" :hide-add="props.hideAdd" />
         </view>
       </template>
       <template #right="{ item }">
-        <view :key="item.id" class="pl-1.5">
+        <view class="pl-1.5">
           <CardWaterfallItem :item="item" :hide-add="props.hideAdd" />
         </view>
       </template>

@@ -163,5 +163,10 @@ export default defineConfig(({ command, mode }) => {
         },
       },
     },
+    esbuild: {
+      supported: {
+        bigint: true,
+      },
+    },
   }
 })
