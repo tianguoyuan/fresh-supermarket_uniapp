@@ -9,7 +9,7 @@ import {
 //
 const searchMsg = ref('')
 onLoad((query) => {
-  searchMsg.value = query.searchMsg || ''
+  searchMsg.value = query.searchMsg ? decodeURIComponent(query.searchMsg) : ''
 })
 
 function pageBack() {
@@ -46,7 +46,7 @@ function init() {
 </script>
 
 <template>
-  <wd-navbar :title="searchMsg" left-arrow fixed placeholder>
+  <wd-navbar :title="searchMsg" left-arrow fixed placeholder safe-area-inset-top>
     <template #capsule>
       <wd-navbar-capsule @back="pageBack" @back-home="pageToHome" />
     </template>

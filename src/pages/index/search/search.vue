@@ -22,7 +22,7 @@ function search(val: string = searchMsg.value) {
   }
   // 搜索接口
   uni.navigateTo({
-    url: `/pages/index/search/result?searchMsg=${urlEncode(copySearchMsg)}`,
+    url: `/pages/index/search/result?searchMsg=${encodeURIComponent(copySearchMsg)}`,
   })
 }
 

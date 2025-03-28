@@ -38,13 +38,7 @@ function handleClickAdd(v: FindCommonRecommendListRes['list'][0]) {
           <image v-else class="h-full w-full" src="../assets/icons/radio.svg" />
         </view>
         <view :class="[props.flag !== 'shopping' ? 'w-25 h-25' : '']" class="ml-2 h-20 w-20">
-          <wd-img
-            custom-style="width:100%; height:100%;"
-            :src="item.cover"
-            lazy-load
-            enable-preview
-            @click.prevent.stop
-          />
+          <wd-img custom-style="width:100%; height:100%;" :src="item.cover" lazy-load />
         </view>
       </view>
       <view class="ml-3 flex flex-1 flex-col justify-between">
