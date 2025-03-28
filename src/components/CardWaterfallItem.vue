@@ -46,7 +46,7 @@ function handleClickAdd(v: FindCommonRecommendListRes['list'][0]) {
           </view>
         </view>
         <view class="mt-2px flex justify-between whitespace-nowrap line-height-22px align-baseline">
-          <view class="flex">
+          <view class="flex items-end">
             <view class="text-[10px] color-#F55726">￥</view>
             <view class="text-4 color-#F55726">{{ item.price }}</view>
             <view class="ml-2px text-3 color-#999">/箱</view>

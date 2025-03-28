@@ -30,7 +30,7 @@ function pageToProductDetail(v: FindCommonRecommendListRes['list'][0]) {
 
 <template>
   <view v-for="(item, index) in props.listData" :key="index" class="category m-3">
-    <view class="text-3 color-gray font-600">{{ item.moduleTitle }}</view>
+    <view class="text-3 color-gray font-600 line-clamp-1">{{ item.moduleTitle }}</view>
     <view v-for="(cell, cellIndex) in item.list" :key="cellIndex" class="flex my-3">
       <view class="mr-3 w-27 h-27">
         <wd-img
@@ -60,7 +60,7 @@ function pageToProductDetail(v: FindCommonRecommendListRes['list'][0]) {
           <view
             class="mt-2px flex justify-between whitespace-nowrap line-height-22px align-baseline"
           >
-            <view class="flex">
+            <view class="flex items-end">
               <view class="text-[10px] color-#F55726">￥</view>
               <view class="text-4 color-#F55726">{{ cell.price }}</view>
               <view class="ml-2px text-3 color-#999">/箱</view>
