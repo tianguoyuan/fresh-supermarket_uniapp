@@ -244,7 +244,7 @@ export default {
         >
           {{ item.title }}
         </view>
-        <view>
+        <view class="flex justify-center">
           <view
             class="text-3 line-height-4 transition-all"
             :class="[

@@ -26,7 +26,9 @@ function handleClickAdd(v: FindCommonRecommendListRes['list'][0]) {
 <template>
   <view class="rounded-3 overflow-hidden mb-3" @click="pageToProductDetail">
     <view class="w-full bg-white p-3">
-      <image class="w-full" :src="props.item.cover" mode="widthFix" />
+      <view class="w-36 h-36">
+        <image class="w-full h-full" :src="props.item.cover" />
+      </view>
       <view class="mt-1 text-[14] line-height-[18px] line-clamp-2">
         {{ props.item.title }}
       </view>

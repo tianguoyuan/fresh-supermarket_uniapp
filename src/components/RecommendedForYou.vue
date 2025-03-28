@@ -30,9 +30,13 @@ defineExpose({
 <template>
   <view class="mt-6">
     <view class="flex items-center justify-center">
-      <image class="w-22px h-22px" src="@/assets/icons/recommend-l.svg" />
+      <view class="w-22px h-22px">
+        <image class="w-full h-full" src="@/assets/icons/recommend-l.svg" />
+      </view>
       <view class="px-3 text-4">为你推荐</view>
-      <image class="w-22px h-22px" src="@/assets/icons/recommend-r.svg" />
+      <view class="w-22px h-22px">
+        <image class="w-full h-full" src="@/assets/icons/recommend-r.svg" />
+      </view>
     </view>
 
     <view class="mt-3">
