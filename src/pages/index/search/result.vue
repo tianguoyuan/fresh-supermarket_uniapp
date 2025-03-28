@@ -13,9 +13,7 @@ onLoad((query) => {
 })
 
 function pageBack() {
-  uni.redirectTo({
-    url: '/pages/index/search/search',
-  })
+  uni.navigateBack()
 }
 function pageToHome() {
   uni.switchTab({
