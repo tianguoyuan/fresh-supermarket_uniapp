@@ -64,11 +64,12 @@ function handleClickAdd(v: FindCommonRecommendListRes['list'][0]) {
           v-if="item.isOneDay && item.oldPrice"
           class="mt-2 text-3 flex items-end color-#ccc line-through"
         >
-          ￥{{ item.oldPrice }}
+          <view class="text-[10px]">￥</view>
+          <view>{{ item.oldPrice }}</view>
         </view>
 
         <view class="mt-2px flex justify-between">
-          <view class="flex">
+          <view class="flex items-end">
             <view class="text-[10px] color-#F55726">￥</view>
             <view class="text-4 color-#F55726">{{ item.price }}</view>
           </view>

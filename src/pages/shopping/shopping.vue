@@ -113,7 +113,7 @@ function pageToSettleAccount() {
           </view>
           <view class="flex items-center">
             <view class="text-3">合计:</view>
-            <view class="text-10px color-#F55726">￥</view>
+            <view class="ml-1 text-10px color-#F55726">￥</view>
             <view class="text-4 color-#F55726">{{ priceSum }}</view>
             <view
               class="ml-3 rounded-full px-6 py-2 color-white"
