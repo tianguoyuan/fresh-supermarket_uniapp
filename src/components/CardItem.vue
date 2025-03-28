@@ -33,7 +33,13 @@ function handleClickAdd(v: FindCommonRecommendListRes['list'][0]) {
 <template>
   <view class="block bg-white p-3" @click="pageToProductDetail">
     <view class="w-23 h-23">
-      <image :src="props.item.cover" class="w-full h-full" lazy-load />
+      <wd-img
+        custom-style="width:100%; height:100%;"
+        :src="props.item.cover"
+        lazy-load
+        enable-preview
+        @click.prevent.stop
+      />
     </view>
     <view
       class="mt-1 text-[14] line-height-[18px]"

@@ -7,9 +7,9 @@ interface NavigateToOptions {
   url: "/pages/dashboard" |
        "/pages/index/index" |
        "/pages/index/productDetail" |
-       "/pages/index/productList" |
        "/pages/kind/kind" |
        "/pages/shopping/address" |
+       "/pages/shopping/paymentResult" |
        "/pages/shopping/settleAccount" |
        "/pages/shopping/shopping" |
        "/pages/user/login" |

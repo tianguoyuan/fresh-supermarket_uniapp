@@ -35,6 +35,13 @@ async function handleClickRemove() {
   })
   removeCheckedList()
 }
+
+function pageToSettleAccount() {
+  if (!checkedList.value.length) return
+  uni.navigateTo({
+    url: '/pages/shopping/settleAccount',
+  })
+}
 </script>
 <template>
   <wd-navbar title="购物车" fixed placeholder safe-area-inset-top>
@@ -109,9 +116,9 @@ async function handleClickRemove() {
             <view class="text-10px color-#F55726">￥</view>
             <view class="text-4 color-#F55726">{{ priceSum }}</view>
             <view
-              to="/shopping/settleAccount"
               class="ml-3 rounded-full px-6 py-2 color-white"
               :class="[checkedList.length ? 'bg-main' : 'bg-#999 pointer-events-none']"
+              @click="pageToSettleAccount"
             >
               去结算
             </view>

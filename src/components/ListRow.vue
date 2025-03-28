@@ -1,5 +1,7 @@
 <script lang="ts" setup>
+import { FindCommonRecommendListRes } from '@/service/common'
 import { type kindListRes } from '@/service/kind'
+import { useShoppingStore } from '@/store/shopping'
 const props = defineProps<{
   listData: kindListRes['module']
 }>()
@@ -9,6 +11,21 @@ const instance = getCurrentInstance()
 defineExpose({
   instance,
 })
+
+const shoppingStore = useShoppingStore()
+const { addShoppingList } = shoppingStore
+
+function handleClickAdd(v: FindCommonRecommendListRes['list'][0]) {
+  addShoppingList(v, true)
+}
+
+function pageToProductDetail(v: FindCommonRecommendListRes['list'][0]) {
+  const pages = getCurrentPages()
+  const path = '/' + pages[pages.length - 1].route
+  uni.navigateTo({
+    url: `/pages/index/productDetail?id=${v.id}&back=${path}`,
+  })
+}
 </script>
 
 <template>
@@ -23,7 +40,7 @@ defineExpose({
           enable-preview
         />
       </view>
-      <view class="flex flex-col justify-between flex-1">
+      <view class="flex flex-col justify-between flex-1" @click="pageToProductDetail(cell)">
         <view>
           <view class="text-14px line-clamp-2">{{ cell.title }}</view>
           <view class="text-3 mt-1 color-gray">{{ cell.desc }}</view>
@@ -48,7 +65,10 @@ defineExpose({
               <view class="text-4 color-#F55726">{{ cell.price }}</view>
               <view class="ml-2px text-3 color-#999">/箱</view>
             </view>
-            <image src="../assets/icons/add-shopping.svg" mode="widthFix" class="w-5 mr-1" />
+
+            <view class="w-5 h-5" @click.stop.prevent="handleClickAdd(cell)">
+              <image src="../assets/icons/add-shopping.svg" class="w-full h-full mr-1" />
+            </view>
           </view>
         </view>
       </view>

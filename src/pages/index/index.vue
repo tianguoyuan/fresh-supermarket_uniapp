@@ -6,7 +6,7 @@ import Tabbar from '@/components/Tabbar.vue'
 import { CommonBaseListParams } from '@/service/common'
 import {
   findHomeFoodKindBanner,
-  searchDefaultMsg,
+  findSearchDefaultMsg,
   getHomeBanner,
   findHomeGreatDealList,
   type HomeFoodKindBannerRes,
@@ -108,7 +108,7 @@ onReachBottom(() => {
 onLoad(init)
 async function init() {
   // 首页-搜索-默认关键词
-  searchDefaultMsg().then(({ data }) => {
+  findSearchDefaultMsg().then(({ data }) => {
     hotSearchMsg.value = data.searchDefault || ''
   })
 

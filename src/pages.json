@@ -63,15 +63,8 @@
       "type": "page",
       "layout": "default",
       "style": {
+        "navigationStyle": "custom",
         "navigationBarTitleText": "产品详情"
-      }
-    },
-    {
-      "path": "pages/index/productList",
-      "type": "page",
-      "layout": "default",
-      "style": {
-        "navigationBarTitleText": "产品列表"
       }
     },
     {
@@ -89,6 +82,15 @@
       "style": {
         "navigationStyle": "custom",
         "navigationBarTitleText": "地址管理"
+      }
+    },
+    {
+      "path": "pages/shopping/paymentResult",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "确认订单"
       }
     },
     {
@@ -147,6 +149,7 @@
       "type": "page",
       "layout": "default",
       "style": {
+        "navigationStyle": "custom",
         "navigationBarTitleText": "搜索结果"
       }
     },
@@ -155,6 +158,7 @@
       "type": "page",
       "layout": "default",
       "style": {
+        "navigationStyle": "custom",
         "navigationBarTitleText": "搜索"
       }
     }

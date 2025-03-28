@@ -30,3 +30,12 @@ export interface FindCommonRecommendListRes {
 export const findCommonRecommendList = (data: CommonBaseListParams) => {
   return http.get<FindCommonRecommendListRes>('/common/recommendList', data)
 }
+
+/** 商品详情 */
+export interface FindCommonRecommendListFindOneRes extends CommonRecommendListItem {
+  coverList: string[]
+  tagList: string[]
+}
+export function findCommonRecommendListFindOne(id: string) {
+  return http.get<FindCommonRecommendListFindOneRes>(`/common/${id}/recommendListFindOne`)
+}

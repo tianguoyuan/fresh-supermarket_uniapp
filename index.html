@@ -26,10 +26,26 @@
     <title>unibest</title>
     <!--preload-links-->
     <!--app-context-->
+
+    <!-- 防止 css加载 loading 闪烁 h5 -->
+    <style>
+      html,
+      body,
+      div {
+        padding: 0;
+        margin: 0;
+        line-height: 1;
+      }
+      html {
+        background-color: #f8f9fa;
+      }
+    </style>
   </head>
 
   <body class="font-sans">
-    <div id="app">loading...</div>
+    <div id="app">
+      <div style="font-size: 14px">loading...</div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

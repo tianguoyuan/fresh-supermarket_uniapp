@@ -11,14 +11,6 @@ export const getHomeBanner = () => {
   return http.get<HomeBannerRes>('/home/banner')
 }
 
-/** 首页-搜索-默认关键词 - /search/defaultMsg */
-export interface SearchDefaultMsgRes {
-  searchDefault: string
-}
-export const searchDefaultMsg = () => {
-  return http.get<SearchDefaultMsgRes>('/search/defaultMsg')
-}
-
 /** 首页-食品分类 */
 export interface HomeFoodKindBannerRes {
   foodKindBanner: {
@@ -64,4 +56,25 @@ export interface FindHomeListRes {
 }
 export function findHomeList(data: FindHomeListParams) {
   return http.get<FindHomeListRes>('/home/list', data)
+}
+
+/** 首页-搜索-默认词 */
+interface SearchDefaultMsgRes {
+  searchDefault: string
+}
+export const findSearchDefaultMsg = () => {
+  return http.get<SearchDefaultMsgRes>('/search/defaultMsg')
+}
+
+/** 首页-搜索-热门 */
+export interface SearchHotTagItem {
+  id: string
+  name: string
+}
+interface SearchHotTagRes {
+  total: number
+  list: SearchHotTagItem[]
+}
+export const findSearchHotTag = () => {
+  return http.get<SearchHotTagRes>('/search/hotTag')
 }
