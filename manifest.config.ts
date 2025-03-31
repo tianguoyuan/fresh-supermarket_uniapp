@@ -7,6 +7,7 @@ import { loadEnv } from 'vite'
 const env = loadEnv(process.env.NODE_ENV!, path.resolve(process.cwd(), 'env'))
 const {
   VITE_APP_TITLE,
+  VITE_APP_DESC,
   VITE_UNI_APPID,
   VITE_WX_APPID,
   VITE_APP_PUBLIC_BASE,
@@ -16,7 +17,7 @@ const {
 export default defineManifestConfig({
   name: VITE_APP_TITLE,
   appid: VITE_UNI_APPID,
-  description: '',
+  description: VITE_APP_DESC,
   versionName: '1.0.0',
   versionCode: '100',
   transformPx: false,
