@@ -98,7 +98,8 @@
       "type": "page",
       "layout": "default",
       "style": {
-        "navigationBarTitleText": ""
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "确认订单"
       }
     },
     {

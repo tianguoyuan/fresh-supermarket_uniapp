@@ -204,7 +204,12 @@ export default {
 
     <view>
       <wd-overlay :show="show" :z-index="501">
-        <wd-floating-panel v-model:height="height" :anchors="anchors" :content-draggable="false">
+        <wd-floating-panel
+          v-model:height="height"
+          :anchors="anchors"
+          :content-draggable="false"
+          safe-area-inset-bottom
+        >
           <wd-form ref="form" :model="model">
             <view class="px-3">
               <wd-cell-group border>

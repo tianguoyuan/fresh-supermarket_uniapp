@@ -25,3 +25,14 @@ export function padStart(str: string, length = 2, placeholder = '0') {
 export function padEnd(str: string, length = 2, placeholder = '0') {
   return str.padEnd(length, placeholder)
 }
+
+// 随机数
+export function generateRandomIntegerString(length: number): string {
+  let result = ''
+  for (let i = 0; i < length; i++) {
+    // 生成 0 到 9 的随机整数
+    const randomDigit = Math.floor(Math.random() * 10)
+    result += randomDigit.toString() // 将随机数字转换为字符串并添加到结果中
+  }
+  return result
+}

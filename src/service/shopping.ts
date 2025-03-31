@@ -22,12 +22,18 @@ export function shoppingAddress(data: ShoppingAddressParams) {
   return http.get<ShoppingAddressRes>('/shopping/address', data)
 }
 
-// /** 购物车-地址默认 */
-// export function shoppingFindDefaultAddress(data: API.ShoppingAddress): Promise<API.ShoppingFindDefaultAddressRes> {
-//   return http.request({ url: '/shopping/findDefaultAddress', method: 'GET', data })
-// }
+/** 购物车-地址默认 */
+export interface ShoppingFindDefaultAddressRes {
+  defaultAddress: ShoppingAddressResItem
+}
+export function shoppingFindDefaultAddress(data: ShoppingAddressParams) {
+  return http.get<ShoppingFindDefaultAddressRes>('/shopping/findDefaultAddress', data)
+}
 
-// /** 购物车-优惠券 */
-// export function shoppingGetCoupon(): Promise<API.ShoppingGetCouponRes> {
-//   return http.request({ url: '/shopping/getCoupon', method: 'GET' })
-// }
+/** 购物车-优惠券 */
+export interface ShoppingGetCouponRes {
+  couponList: number[]
+}
+export function shoppingGetCoupon() {
+  return http.get<ShoppingGetCouponRes>('/shopping/getCoupon')
+}
