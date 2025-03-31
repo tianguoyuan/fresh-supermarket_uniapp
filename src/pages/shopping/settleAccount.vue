@@ -13,6 +13,7 @@ import IMG_WECHAT from '../../assets/icons/wechat.svg'
 import IMG_ALIPAY from '../../assets/icons/alipay.svg'
 import { generateRandomIntegerString, subtract } from '@/utils/math'
 import { ConfigEnum } from '@/enums/ConfigEnum'
+import AddressItem from '@/components/AddressItem.vue'
 
 defineOptions({
   name: 'ShoppingSettleAccount',
@@ -30,9 +31,6 @@ const initAddress = {
   county: '',
   suffix: '',
 }
-const defaultAddress = ref<ShoppingFindDefaultAddressRes['defaultAddress']>({
-  ...initAddress,
-})
 
 function pageBack() {
   uni.switchTab({
@@ -44,6 +42,15 @@ function pageToHome() {
 }
 
 // 地址
+const defaultAddress = ref<ShoppingFindDefaultAddressRes['defaultAddress']>({
+  ...initAddress,
+})
+function selectAddress() {
+  uni.navigateTo({
+    url: '/pages/shopping/address',
+  })
+}
+
 const shoppingStore = useShoppingStore()
 const { checkedList, priceSum, checkedListNum } = storeToRefs(shoppingStore)
 const { removeCheckedList } = shoppingStore
@@ -125,6 +132,11 @@ async function init() {
       <wd-navbar-capsule @back="pageBack" @back-home="pageToHome" />
     </template>
   </wd-navbar>
+
+  <!-- 地址 -->
+  <view v-if="defaultAddress" class="m-3">
+    <AddressItem :item="defaultAddress" @handle-click="selectAddress" />
+  </view>
 
   <!-- 地址 -->
   <view class="m-3 rounded-2 bg-white p-3">

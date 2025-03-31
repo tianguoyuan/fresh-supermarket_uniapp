@@ -9,7 +9,7 @@ const message = useMessage()
 const pathParams = ref<{ listData: { label: string; value: string }[] }>({ listData: [] })
 
 onLoad((query) => {
-  pathParams.value.listData = query.listData ? JSON.parse(query.listData) : []
+  pathParams.value.listData = query.listData ? JSON.parse(decodeURIComponent(query.listData)) : []
 
   if (!pathParams.value.listData.length) {
     message

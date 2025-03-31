@@ -35,11 +35,15 @@ function handleClickAdd(v: FindCommonRecommendListRes['list'][0]) {
 
       <view>
         <view class="flex mt-3">
-          <view class="border border-solid border-#F55726 px-[2px] text-[9px] color-#F55726">
+          <view
+            v-if="props.item.isBargainPrice"
+            class="border border-solid border-#F55726 px-[2px] text-[9px] color-#F55726"
+          >
             特价
           </view>
 
           <view
+            v-if="props.item.isOneDay"
             class="ml-1 border border-solid px-[2px] text-[9px] color-primary border-color-primary"
           >
             24H发货

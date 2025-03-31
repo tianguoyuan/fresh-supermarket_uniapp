@@ -24,7 +24,10 @@ function confirm({ value }) {
     :close-on-click-modal="false"
     @confirm="confirm"
   >
-    <view class="flex justify-between rounded-8px bg-white p-3 py-4" @click="showPicker = true">
+    <view
+      class="flex justify-between items-center rounded-8px bg-white p-3 py-4"
+      @click="showPicker = true"
+    >
       <view>优惠券</view>
       <view class="flex items-center">
         <view v-if="props.pickerValue">
@@ -36,7 +39,7 @@ function confirm({ value }) {
         </view>
         <view v-else class="color-#999">请选择</view>
         <view class="pr-1"></view>
-        <wd-icon name="arrow-right"></wd-icon>
+        <wd-icon name="arrow-right" color="#e5e7eb"></wd-icon>
       </view>
     </view>
   </wd-picker>

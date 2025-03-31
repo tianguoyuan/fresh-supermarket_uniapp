@@ -7,12 +7,12 @@ const props = defineProps<{
 </script>
 
 <template>
-  <view class="mt-4 first:mt-0">
+  <view class="mb-5 first:mt-0">
     <view class="flex justify-between text-3">
       <view>生鲜快递发货</view>
       <view v-if="props.item.isOneDay" class="color-#40AE36">上架24H发货，第三方物流配送</view>
     </view>
-    <view class="mt-2 flex line-height-18px">
+    <view class="flex line-height-18px">
       <view class="flex flex-1 items-center">
         <view class="h-65px w-65px flex-shrink-0 bg-#f8f9fa">
           <image :src="item.cover" class="h-full w-full" />

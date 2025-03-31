@@ -34,7 +34,13 @@ function pageTo(index: number) {
   uni.switchTab({ url: path })
 }
 </script>
-
+<script lang="ts">
+export default {
+  options: {
+    styleIsolation: 'shared', // 解除样式隔离
+  },
+}
+</script>
 <template>
   <wd-tabbar
     v-if="!tabbarStore.hideTabbar"
@@ -44,8 +50,10 @@ function pageTo(index: number) {
     safe-area-inset-bottom
     :placeholder="isPlaceholder"
     :active-color="ColorEnum.MAIN_COLOR"
+    custom-style="box-sizing:content-box;"
     @update:model-value="pageTo"
   >
+    <!-- box-sizing:content-box; ios展示高度错误 -->
     <wd-tabbar-item
       v-for="item in tabbarList"
       :key="item.title"
@@ -57,11 +65,4 @@ function pageTo(index: number) {
   </wd-tabbar>
 </template>
 
-<style lang="scss" scoped>
-.tabbarItemBox {
-  :deep(.is-dot) {
-    width: 12px;
-    height: 12px;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
