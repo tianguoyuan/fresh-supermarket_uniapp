@@ -17,19 +17,18 @@ onLoad((query) => {
 })
 
 function pageBack() {
-  uni.navigateBack()
-  // if (pathParams.value.back) {
-  //   const pushType = PageEnum.TABBAR_PAGE_LIST.includes(pathParams.value.back.split('?')?.[0])
-  //     ? 'switchTab'
-  //     : 'redirectTo'
-  //   uni[pushType]({
-  //     url: pathParams.value.back,
-  //   })
-  // } else {
-  //   uni.switchTab({
-  //     url: '/pages/index/index',
-  //   })
-  // }
+  if (pathParams.value.back) {
+    const pushType = PageEnum.TABBAR_PAGE_LIST.includes(pathParams.value.back.split('?')?.[0])
+      ? 'switchTab'
+      : 'redirectTo'
+    uni[pushType]({
+      url: pathParams.value.back,
+    })
+  } else {
+    uni.switchTab({
+      url: '/pages/index/index',
+    })
+  }
 }
 
 const shoppingStore = useShoppingStore()

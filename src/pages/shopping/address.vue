@@ -26,19 +26,18 @@ onLoad((query) => {
 })
 
 function pageBack() {
-  uni.navigateBack()
-  // if (pathParams.value.back) {
-  //   const pushType = PageEnum.TABBAR_PAGE_LIST.includes(pathParams.value.back.split('?')?.[0])
-  //     ? 'switchTab'
-  //     : 'redirectTo'
-  //   uni[pushType]({
-  //     url: pathParams.value.back,
-  //   })
-  // } else {
-  //   uni.switchTab({
-  //     url: '/pages/user/user',
-  //   })
-  // }
+  if (pathParams.value.back) {
+    const pushType = PageEnum.TABBAR_PAGE_LIST.includes(pathParams.value.back.split('?')?.[0])
+      ? 'switchTab'
+      : 'redirectTo'
+    uni[pushType]({
+      url: pathParams.value.back,
+    })
+  } else {
+    uni.switchTab({
+      url: '/pages/user/user',
+    })
+  }
 }
 
 const userStore = useUserStore()
