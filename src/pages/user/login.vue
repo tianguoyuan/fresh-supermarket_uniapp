@@ -2,6 +2,7 @@
 import { PageEnum } from '@/enums/PageEnum'
 import { getUserInfo, userGetPhoneCode, userLogin } from '@/service'
 import { useUserStore } from '@/store'
+import { openQQHref } from '@/utils/path'
 import { urlDecode } from '@/utils/url'
 import { useToast } from 'wot-design-uni'
 //
@@ -161,8 +162,8 @@ export default {
     <view class="color-[#666262] pb-10">
       <view class="text-center">其它登录方式</view>
       <view class="mt-5 flex justify-evenly px-5">
-        <image class="w-53px h-53px" src="../../assets/icons/wechat.svg" />
-        <image class="w-53px h-53px" src="../../assets/icons/qq.svg" />
+        <image class="w-53px h-53px" src="../../assets/icons/wechat.svg" @click="openQQHref" />
+        <image class="w-53px h-53px" src="../../assets/icons/qq.svg" @click="openQQHref" />
       </view>
     </view>
   </view>

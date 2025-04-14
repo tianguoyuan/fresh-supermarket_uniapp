@@ -16,6 +16,7 @@ import {
   findHomeList,
   FindHomeListRes,
 } from '@/service/home'
+import { openAppShare, openScan } from '@/utils/path'
 import PLATFORM from '@/utils/platform'
 import { urlEncode } from '@/utils/url'
 
@@ -150,15 +151,15 @@ export default {
       <view>
         <wd-icon name="location" color="white"></wd-icon>
         <template v-if="PLATFORM.isMp">
-          <wd-icon name="scan" color="white" custom-class="ml-5"></wd-icon>
-          <wd-icon name="share" color="white" custom-class="ml-5"></wd-icon>
+          <wd-icon name="scan" color="white" custom-class="ml-5" @click="openScan"></wd-icon>
+          <wd-icon name="share" color="white" custom-class="ml-5" @click="openAppShare"></wd-icon>
         </template>
       </view>
     </template>
     <template v-if="!PLATFORM.isMp" #right>
       <view>
-        <wd-icon name="scan" color="white"></wd-icon>
-        <wd-icon name="share" color="white" custom-class="ml-5"></wd-icon>
+        <wd-icon name="scan" color="white" @click="openScan"></wd-icon>
+        <wd-icon name="share" color="white" custom-class="ml-5" @click="openAppShare"></wd-icon>
       </view>
     </template>
   </wd-navbar>

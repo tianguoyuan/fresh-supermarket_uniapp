@@ -5,6 +5,7 @@ import Tabbar from '@/components/Tabbar.vue'
 import { getKindList, type kindListRes } from '@/service/kind'
 import SidebarList from '@/components/SidebarList.vue'
 import PLATFORM from '@/utils/platform'
+import { openAppShare } from '@/utils/path'
 
 defineOptions({
   name: 'Kind',
@@ -60,12 +61,12 @@ export default {
       <wd-navbar title="分类" fixed placeholder safe-area-inset-top>
         <!-- #ifdef MP-WEIXIN -->
         <template #left>
-          <wd-icon name="share"></wd-icon>
+          <wd-icon name="share" @click="openAppShare"></wd-icon>
         </template>
         <!-- #endif -->
         <!-- #ifndef MP-WEIXIN -->
         <template #right>
-          <wd-icon name="share"></wd-icon>
+          <wd-icon name="share" @click="openAppShare"></wd-icon>
         </template>
         <!-- #endif -->
       </wd-navbar>
