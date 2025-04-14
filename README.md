@@ -16,8 +16,8 @@
 [![fork](https://gitee.com/mynametian/fresh-supermarket_uniapp/badge/fork.svg?theme=dark)](https://gitee.com/mynametian/fresh-supermarket_uniapp/members)
 ![node version](https://img.shields.io/badge/node-%3E%3D18-green)
 ![pnpm version](https://img.shields.io/badge/pnpm-%3E%3D7.30-green)
-![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/feige996/unibest)
-![GitHub License](https://img.shields.io/github/license/feige996/unibest)
+![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/tianguoyuan/fresh-supermarket_uniapp)
+![GitHub License](https://img.shields.io/github/license/tianguoyuan/fresh-supermarket_uniapp)
 
 </div>
 

@@ -21,6 +21,14 @@ function pageBack() {
     const pushType = PageEnum.TABBAR_PAGE_LIST.includes(pathParams.value.back.split('?')?.[0])
       ? 'switchTab'
       : 'redirectTo'
+
+    console.log(
+      'pushType',
+      pushType,
+      PageEnum.TABBAR_PAGE_LIST,
+      pathParams.value.back.split('?')?.[0],
+    )
+
     uni[pushType]({
       url: pathParams.value.back,
     })

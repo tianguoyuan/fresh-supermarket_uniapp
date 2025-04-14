@@ -158,7 +158,7 @@ export default defineConfig(({ command, mode }) => {
       minify: mode === 'development' ? false : 'terser',
       terserOptions: {
         compress: {
-          drop_console: VITE_DELETE_CONSOLE === 'true',
+          // drop_console: VITE_DELETE_CONSOLE === 'true',
           drop_debugger: true,
         },
       },
