@@ -1,23 +1,22 @@
 {
-  "name": "unibest",
+  "name": "fresh-supermarket_uniapp",
   "type": "commonjs",
   "version": "2.5.6",
-  "description": "unibest - 最好的 uniapp 开发模板",
+  "description": "uniapp_生鲜超市",
   "author": {
-    "name": "feige996",
-    "zhName": "菲鸽",
-    "email": "1020103647@qq.com",
-    "github": "https://github.com/feige996",
-    "gitee": "https://gitee.com/feige996"
+    "name": "KaiKo",
+    "zhName": "游_弋",
+    "email": "603660895@qq.com",
+    "github": "https://github.com/tianguoyuan/fresh-supermarket_uniapp",
+    "gitee": "https://gitee.com/mynametian/fresh-supermarket_uniapp"
   },
   "license": "MIT",
-  "repository": "https://github.com/feige996/unibest",
-  "repository-gitee": "https://gitee.com/feige996/unibest",
-  "repository-deprecated": "https://github.com/codercup/unibest",
+  "repository": "https://github.com/tianguoyuan/fresh-supermarket_uniapp",
+  "repository-gitee": "https://gitee.com/mynametian/fresh-supermarket_uniapp",
   "bugs": {
-    "url": "https://github.com/feige996/unibest/issues"
+    "url": "https://github.com/tianguoyuan/fresh-supermarket_uniapp/issues"
   },
-  "homepage": "https://feige996.github.io/unibest/",
+  "homepage": "https://fresh-supermarket-uniapp.netlify.app",
   "engines": {
     "node": ">=18",
     "pnpm": ">=7.30"
