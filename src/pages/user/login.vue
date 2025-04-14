@@ -196,5 +196,6 @@ export default {
     navigationBarTitleText: '用户-登录',
     navigationStyle: 'custom',
   },
+  noNeedLogin: true,
 }
 </route>

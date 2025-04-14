@@ -55,5 +55,6 @@ if (PLATFORM.isMpWeixin) {
     navigationStyle: 'custom',
     navigationBarTitleText: '欢迎进入_生鲜超市uniapp',
   },
+  noNeedLogin: true,
 }
 </route>

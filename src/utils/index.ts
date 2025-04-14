@@ -77,12 +77,12 @@ export const getUrlObj = (url: string) => {
  * 这里设计得通用一点，可以传递key作为判断依据，默认是 needLogin, 与 route-block 配对使用
  * 如果没有传 key，则表示所有的pages，如果传递了 key, 则表示通过 key 过滤
  */
-export const getAllPages = (key = 'needLogin') => {
+export const getAllPages = (key = 'noNeedLogin') => {
   // 这里处理主包
   console.log('app-all-pages', pages)
   const mainPages = [
     ...pages
-      .filter((page) => !key || page[key])
+      .filter((page) => !page[key])
       .map((page) => ({
         ...page,
         path: `/${page.path}`,
@@ -95,7 +95,7 @@ export const getAllPages = (key = 'needLogin') => {
     const { root } = subPageObj
 
     subPageObj.pages
-      .filter((page) => !key || page[key])
+      .filter((page) => !page[key])
       .forEach((page: { path: string } & Record<string, any>) => {
         subPages.push({
           ...page,
@@ -107,18 +107,17 @@ export const getAllPages = (key = 'needLogin') => {
   // console.log(`getAllPages by ${key} result: `, result)
   return result
 }
+/**
+ * 得到所有的需要登录的pages，包括主包和分包的
+ * 只得到 path 数组
+ */
+export const getNeedLoginPages = (): string[] => getAllPages('noNeedLogin').map((page) => page.path)
 
 /**
  * 得到所有的需要登录的pages，包括主包和分包的
  * 只得到 path 数组
  */
-export const getNeedLoginPages = (): string[] => getAllPages('needLogin').map((page) => page.path)
-
-/**
- * 得到所有的需要登录的pages，包括主包和分包的
- * 只得到 path 数组
- */
-export const needLoginPages: string[] = getAllPages('needLogin').map((page) => page.path)
+export const needLoginPages: string[] = getAllPages('noNeedLogin').map((page) => page.path)
 
 /**
  * 根据微信小程序当前环境，判断应该获取的BaseUrl

@@ -34,6 +34,7 @@ export const navigateToInterceptor = {
       needLoginPages = _needLoginPages
     }
     const isNeedLogin = needLoginPages.includes(path)
+    console.log('needLoginPages-需要登录路由', needLoginPages)
 
     if (!isNeedLogin) {
       return true

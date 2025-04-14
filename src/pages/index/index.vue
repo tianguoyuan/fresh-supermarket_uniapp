@@ -304,6 +304,5 @@ export default {
     navigationBarTitleText: '首页',
     onReachBottomDistance: 100,
   },
-  needLogin: true, // 是否需要登录标识
 }
 </route>

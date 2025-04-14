@@ -29,7 +29,6 @@ export function openQQHref() {
     const domA = document.createElement('a')
     domA.href = qqHref()
     console.log('qqHref()', qqHref())
-    alert(qqHref())
     domA.click()
   } else {
     uni.showToast({ icon: 'none', title: '不支持微信内打开', duration: 3e3 })

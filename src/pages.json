@@ -46,7 +46,8 @@
       "style": {
         "navigationStyle": "custom",
         "navigationBarTitleText": "欢迎进入_生鲜超市uniapp"
-      }
+      },
+      "noNeedLogin": true
     },
     {
       "path": "pages/index/index",
@@ -55,8 +56,7 @@
         "navigationStyle": "custom",
         "navigationBarTitleText": "首页",
         "onReachBottomDistance": 100
-      },
-      "needLogin": true
+      }
     },
     {
       "path": "pages/index/productDetail",
@@ -117,7 +117,8 @@
       "style": {
         "navigationBarTitleText": "用户-登录",
         "navigationStyle": "custom"
-      }
+      },
+      "noNeedLogin": true
     },
     {
       "path": "pages/user/myOrder",
@@ -135,7 +136,8 @@
       "style": {
         "navigationBarTitleText": "用户-注册",
         "navigationStyle": "custom"
-      }
+      },
+      "noNeedLogin": true
     },
     {
       "path": "pages/user/user",
