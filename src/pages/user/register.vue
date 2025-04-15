@@ -42,9 +42,15 @@ function handleSubmit() {
         const pushType = PageEnum.TABBAR_PAGE_LIST.includes(redirectUrl.value)
           ? 'switchTab'
           : 'redirectTo'
-        uni[pushType]({
-          url: redirectUrl.value,
-        })
+        if (pushType === 'redirectTo') {
+          uni.redirectTo({
+            url: redirectUrl.value,
+          })
+        } else if (pushType === 'switchTab') {
+          uni.switchTab({
+            url: redirectUrl.value,
+          })
+        }
       } else {
         uni.switchTab({
           url: '/pages/index/index',
