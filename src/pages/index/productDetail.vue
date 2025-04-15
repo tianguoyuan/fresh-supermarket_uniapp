@@ -28,10 +28,15 @@ function pageBack() {
       PageEnum.TABBAR_PAGE_LIST,
       pathParams.value.back.split('?')?.[0],
     )
-
-    uni[pushType]({
-      url: pathParams.value.back,
-    })
+    if (pushType === 'redirectTo') {
+      uni.redirectTo({
+        url: pathParams.value.back,
+      })
+    } else if (pushType === 'switchTab') {
+      uni.switchTab({
+        url: pathParams.value.back,
+      })
+    }
   } else {
     uni.switchTab({
       url: '/pages/index/index',

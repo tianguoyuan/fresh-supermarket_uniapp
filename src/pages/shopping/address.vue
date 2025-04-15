@@ -30,9 +30,16 @@ function pageBack() {
     const pushType = PageEnum.TABBAR_PAGE_LIST.includes(pathParams.value.back.split('?')?.[0])
       ? 'switchTab'
       : 'redirectTo'
-    uni[pushType]({
-      url: pathParams.value.back,
-    })
+
+    if (pushType === 'redirectTo') {
+      uni.redirectTo({
+        url: pathParams.value.back,
+      })
+    } else if (pushType === 'switchTab') {
+      uni.switchTab({
+        url: pathParams.value.back,
+      })
+    }
   } else {
     uni.switchTab({
       url: '/pages/user/user',
