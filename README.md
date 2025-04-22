@@ -1,3 +1,13 @@
+## 预览
+
+<table align="center">
+<tr>
+  <td><img width="160" src="./src/static/images/h5.png"></td>
+  <td><img width="160" src="./src/static/images/wechat.png"></td>
+  <td><img width="160" src="./src/static/images/android.png"></td>
+</tr>
+</table>
+
 <p align="center">
   <a href="https://fresh-supermarket-uniapp.netlify.app">
     <img width="160" src="./src/static/app/icons/logo.png">
