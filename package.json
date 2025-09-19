@@ -123,6 +123,7 @@
     "z-paging": "^2.8.4"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@commitlint/cli": "^18.6.1",
     "@commitlint/config-conventional": "^18.6.3",
     "@dcloudio/types": "^3.4.14",
