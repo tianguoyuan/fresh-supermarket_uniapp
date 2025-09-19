@@ -1,6 +1,6 @@
 ## 预览
 
-[h5](https://het-tea-uniapp.netlify.app/)
+[h5](https://fresh-supermarket-uniapp.netlify.app/)
 [接口地址](https://s.apifox.cn/07708541-bd35-4914-9803-48ef257af742)
 
 <table align="center">
