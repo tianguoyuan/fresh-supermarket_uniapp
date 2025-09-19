@@ -114,6 +114,10 @@ export default defineManifestConfig({
     appid: VITE_WX_APPID,
     setting: {
       urlCheck: false,
+      minified: true,
+      minifyWXML: true,
+      minifyWXSS: true,
+      ignoreDevUnusedFiles: true,
     },
     usingComponents: true,
     // __usePrivacyCheck__: true,

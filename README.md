@@ -1,5 +1,7 @@
 ## 预览
 
+[h5](https://het-tea-uniapp.netlify.app/)
+
 <table align="center">
 <tr>
   <td><img width="160" src="./src/static/images/h5.png"></td>
@@ -8,63 +10,12 @@
 </tr>
 </table>
 
-<p align="center">
-  <a href="https://fresh-supermarket-uniapp.netlify.app">
-    <img width="160" src="./src/static/app/icons/logo.png">
-  </a>
-</p>
-
-<h1 align="center">
-  <a href="https://github.com/feige996/unibest" target="_blank">unibest - 最好的 uniapp 开发框架</a>
-</h1>
-
-<div align="center">
-
-[![GitHub Repo stars](https://img.shields.io/github/stars/tianguoyuan/fresh-supermarket_uniapp?style=flat&logo=github)](https://github.com/tianguoyuan/fresh-supermarket_uniapp)
-[![GitHub forks](https://img.shields.io/github/forks/tianguoyuan/fresh-supermarket_uniapp?style=flat&logo=github)](https://github.com/tianguoyuan/fresh-supermarket_uniapp)
-[![star](https://gitee.com/mynametian/fresh-supermarket_uniapp/badge/star.svg?theme=dark)](https://gitee.com/mynametian/fresh-supermarket_uniapp/stargazers)
-[![fork](https://gitee.com/mynametian/fresh-supermarket_uniapp/badge/fork.svg?theme=dark)](https://gitee.com/mynametian/fresh-supermarket_uniapp/members)
-![node version](https://img.shields.io/badge/node-%3E%3D18-green)
-![pnpm version](https://img.shields.io/badge/pnpm-%3E%3D7.30-green)
-![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/tianguoyuan/fresh-supermarket_uniapp)
-![GitHub License](https://img.shields.io/github/license/tianguoyuan/fresh-supermarket_uniapp)
-
-</div>
-
-`unibest` —— 最好的 `uniapp` 开发模板，由 `uniapp` + `Vue3` + `Ts` + `Vite5` + `UnoCss` + `wot-ui` + `z-paging` 构成，使用了最新的前端技术栈，无需依靠 `HBuilderX`，通过命令行方式运行 `web`、`小程序` 和 `App`（编辑器推荐 `VSCode`，可选 `webstorm`）。
-
-`unibest` 内置了 `约定式路由`、`layout布局`、`请求封装`、`请求拦截`、`登录拦截`、`UnoCSS`、`i18n多语言` 等基础功能，提供了 `代码提示`、`自动格式化`、`统一配置`、`代码片段` 等辅助功能，让你编写 `uniapp` 拥有 `best` 体验 （ `unibest 的由来`）。
-
-![](https://raw.githubusercontent.com/andreasbm/readme/master/screenshots/lines/rainbow.png)
-
-<p align="center">
-  <a href="https://unibest.tech/" target="_blank">📖 文档地址(new)</a>
-  <span style="margin:0 10px;">|</span>
-  <a href="https://feige996.github.io/hello-unibest/" target="_blank">📱 DEMO 地址</a>
-</p>
-
-## 平台兼容性
-
-| H5  | IOS | 安卓 | 微信小程序 | 字节小程序 | 快手小程序 | 支付宝小程序 | 钉钉小程序 | 百度小程序 |
-| --- | --- | ---- | ---------- | ---------- | ---------- | ------------ | ---------- | ---------- |
-| √   | √   | √    | √          | √          | √          | √            | √          | √          |
-
-注意每种 `UI框架` 支持的平台有所不同，详情请看各 `UI框架` 的官网，也可以看 `unibest` 文档。
-
 ## ⚙️ 环境
 
 - node>=18
 - pnpm>=7.30
 - Vue Official>=2.1.10
 - TypeScript>=5.0
-
-## &#x1F4C2; 快速开始
-
-执行 `pnpm create unibest` 创建项目
-
-执行 `pnpm i` 安装依赖
-
-执行 `pnpm dev` 运行 `H5`
 
 ## 📦 运行（支持热更新）
 
@@ -82,4 +33,4 @@
 
 [MIT](https://opensource.org/license/mit/)
 
-Copyright (c) 2025 游\_弋
+Copyright (c) 2025 KaiKoTian
