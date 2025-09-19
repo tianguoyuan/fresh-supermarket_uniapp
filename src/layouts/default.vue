@@ -7,6 +7,10 @@ const themeVars: ConfigProviderThemeVars = {
   // buttonPrimaryBgColor: '#07c160',
   // buttonPrimaryColor: '#07c160',
 }
+
+// #ifdef MP
+uni.showShareMenu()
+// #endif
 </script>
 
 <template>
