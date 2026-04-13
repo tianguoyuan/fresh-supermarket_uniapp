@@ -11,7 +11,7 @@ defineOptions({
 })
 //
 const pathParams = ref<{ id: string; back: string }>({ id: '', back: '' })
-onLoad((query) => {
+onLoad((query = {}) => {
   pathParams.value.id = query.id ? query.id : ''
   pathParams.value.back = query.back ? urlDecode(query.back) : ''
 })
@@ -172,7 +172,7 @@ const isCollect = ref(false)
   </view>
 
   <view class="h-16" />
-  <view class="pb-safe fixed bottom-0 left-0 right-0 flex items-center bg-white pl-3">
+  <view class="pb-safe fixed bottom-0 left-0 right-0 flex items-center bg-white pl-3 shadow-2xl">
     <view class="flex text-3">
       <view class="flex flex-col items-center" @click="isCollect = !isCollect">
         <view class="w-5 h-5">

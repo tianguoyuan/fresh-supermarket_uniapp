@@ -31,30 +31,43 @@ onHide(() => {
 </script>
 
 <style lang="scss">
+// @import './styles/variables';
+@use './style/variables.scss' as var;
+
 // 微信 tabbar.custom隐藏， h5单独设置
 // #ifndef MP
 .uni-tabbar-bottom {
   display: none;
 }
-$appMaxWidth: 500px;
 // 大于$appMaxWidth
-@media (min-width: $appMaxWidth) {
+*[style*='position: fixed'],
+*[style*='position:fixed'],
+.fixed,
+.fixed\:true,
+[class*='fixed-'],
+[class*='-fixed'] {
+  max-width: var.$appMaxWidth !important;
+  margin: auto;
+}
+@media (min-width: var.$appMaxWidth) {
   page {
     position: relative;
-    max-width: $appMaxWidth; /* 设计稿宽度 */
+    max-width: var.$appMaxWidth; /* 设计稿宽度 */
     min-height: 100%;
     margin: 0 auto;
     background: #fff;
   }
   .tn-navbar,
-  .tn-tabbar {
+  .tn-tabbar,
+  .wd-tabbar,
+  .wd-navbar {
     right: 0;
     left: 0;
-    max-width: $appMaxWidth; /* 设计稿宽度 */
+    max-width: var.$appMaxWidth; /* 设计稿宽度 */
     margin: auto;
   }
   .uni-page-head {
-    width: $appMaxWidth;
+    width: var.$appMaxWidth;
     margin: auto;
   }
   html {
