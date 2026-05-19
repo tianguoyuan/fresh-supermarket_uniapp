@@ -81,6 +81,12 @@
       "ignoreVersion": true
     }
   },
+  "app-harmony": {
+    "distribute": {}
+  },
+  "mp-harmony": {
+    "distribute": {}
+  },
   "quickapp": {},
   "mp-weixin": {
     "appid": "wx57dd64187ea82c32",
